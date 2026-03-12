@@ -1277,6 +1277,14 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8618303715278748582, guid: ac6bcd9e2f8778b428501024af28bb38, type: 3}
+      propertyPath: maxX
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8618303715278748582, guid: ac6bcd9e2f8778b428501024af28bb38, type: 3}
+      propertyPath: minX
+      value: -5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8618303715278748582, guid: ac6bcd9e2f8778b428501024af28bb38, type: 3}
       propertyPath: spawnInterval
       value: 1.5
       objectReference: {fileID: 0}
