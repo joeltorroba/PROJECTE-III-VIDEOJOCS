@@ -36,10 +36,19 @@ public class BadObject : MonoBehaviour
         attached = true;
 
         FallSystem fall = player.GetComponent<FallSystem>();
+        FallSystem camFall = Camera.main.GetComponent<FallSystem>();
 
         if (fall != null)
         {
             fall.ModifyFallSpeed(heavyFallSpeed, effectDuration);
+        }
+
+        if (Camera.main != null)
+        {
+            if (camFall != null)
+            {
+                camFall.ModifyFallSpeed(heavyFallSpeed, effectDuration);
+            }
         }
 
         transform.SetParent(player.transform);

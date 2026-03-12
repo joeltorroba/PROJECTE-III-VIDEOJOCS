@@ -36,10 +36,19 @@ public class GoodObject : MonoBehaviour
         attached = true;
 
         FallSystem fall = player.GetComponent<FallSystem>();
+        FallSystem camFall = Camera.main.GetComponent<FallSystem>();
 
         if (fall != null)
         {
             fall.ModifyFallSpeed(slowFallSpeed, effectDuration);
+        }
+
+        if (Camera.main != null)
+        {
+            if (camFall != null)
+            {
+                camFall.ModifyFallSpeed(slowFallSpeed, effectDuration);
+            }
         }
 
         transform.SetParent(player.transform);
