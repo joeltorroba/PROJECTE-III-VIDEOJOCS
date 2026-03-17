@@ -12,7 +12,7 @@ public class GameOverOnGround : MonoBehaviour
 
     void GameOver()
     {
-        Debug.Log("GAME OVER");
+        GameManager.instance.GameOver();
 
         // Detener el juego
         Time.timeScale = 0f;

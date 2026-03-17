@@ -10,7 +10,7 @@ public class VictoryObject : MonoBehaviour
         {
             gameFinished = true;
 
-            Debug.Log("VICTORIA");
+            GameManager.instance.Victory();
 
             // parar el juego
             Time.timeScale = 0f;
