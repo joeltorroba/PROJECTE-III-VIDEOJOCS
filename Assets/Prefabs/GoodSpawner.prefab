@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3190125795230654342}
-  - component: {fileID: 8291710581775767202}
+  - component: {fileID: -9156595146156949079}
   m_Layer: 0
   m_Name: GoodSpawner
   m_TagString: Untagged
@@ -32,7 +32,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8291710581775767202
+--- !u!114 &-9156595146156949079
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -44,5 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb095b51e809a144fbb5252751626ea0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  goodObjectPrefab: {fileID: 6003033542554741231, guid: f0a4ccc7542ef9242b3f1827c5a943b4, type: 3}
-  activationDistance: 10
+  goodPrefabs:
+  - {fileID: 6003033542554741231, guid: ab48f183fd9be504db5611e6e4f821b4, type: 3}
+  - {fileID: 6003033542554741231, guid: f0a4ccc7542ef9242b3f1827c5a943b4, type: 3}
+  activationDistance: 15

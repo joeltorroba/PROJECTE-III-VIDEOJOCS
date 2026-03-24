@@ -4,7 +4,6 @@ using System.Collections;
 public class FallSystem : MonoBehaviour
 {
     public float fallSpeed = 10f;
-
     private float originalFallSpeed;
     private bool isBouncing = false;
 
@@ -17,16 +16,16 @@ public class FallSystem : MonoBehaviour
     {
         if (!isBouncing)
         {
-            transform.Translate(Vector3.down * fallSpeed * Time.deltaTime);
+            transform.position += Vector3.down * fallSpeed * Time.deltaTime;
         }
     }
 
     public void ModifyFallSpeed(float newSpeed, float duration)
     {
-        StartCoroutine(ModifySpeedCoroutine(newSpeed, duration));
+        StartCoroutine(SlowFallCoroutine(newSpeed, duration));
     }
 
-    IEnumerator ModifySpeedCoroutine(float newSpeed, float duration)
+    IEnumerator SlowFallCoroutine(float newSpeed, float duration)
     {
         fallSpeed = newSpeed;
         yield return new WaitForSeconds(duration);
@@ -43,7 +42,7 @@ public class FallSystem : MonoBehaviour
         isBouncing = true;
 
         Vector3 startPos = transform.position;
-        Vector3 targetPos = new Vector3(transform.position.x, transform.position.y + height, transform.position.z);
+        Vector3 targetPos = new Vector3(startPos.x, startPos.y + height, startPos.z);
 
         float time = 0f;
 

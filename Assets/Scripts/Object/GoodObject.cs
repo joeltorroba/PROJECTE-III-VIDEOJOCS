@@ -25,19 +25,18 @@ public class GoodObject : MonoBehaviour
 
             FallSystem fall = other.GetComponent<FallSystem>();
 
-            GoodObject existingGood = other.GetComponentInChildren<GoodObject>();
-            BadObject existingBad = other.GetComponentInChildren<BadObject>();
-
-            // Si hay malo → destruirlo
-            if (existingBad != null)
+            // Cancelar malo si existe
+            BadObject bad = other.GetComponentInChildren<BadObject>();
+            if (bad != null)
             {
-                Destroy(existingBad.gameObject);
+                Destroy(bad.gameObject);
             }
 
-            // Si hay otro bueno → destruirlo
-            if (existingGood != null && existingGood != this)
+            // Cancelar otro bueno si existe
+            GoodObject good = other.GetComponentInChildren<GoodObject>();
+            if (good != null && good != this)
             {
-                Destroy(existingGood.gameObject);
+                Destroy(good.gameObject);
             }
 
             if (effectType == EffectType.SlowFall)
@@ -49,7 +48,7 @@ public class GoodObject : MonoBehaviour
             else if (effectType == EffectType.Bounce)
             {
                 fall.Bounce(bounceHeight, effectDuration);
-                Destroy(gameObject);
+                Destroy(gameObject); // la colchoneta NO se pega
             }
         }
     }
