@@ -3,55 +3,60 @@ using System.Collections;
 
 public class GoodObject : MonoBehaviour
 {
-    public float slowFallSpeed = 6f;
-    public float effectDuration = 3f;
+    public enum EffectType
+    {
+        SlowFall,
+        Bounce
+    }
 
-    private bool attached = false;
+    public EffectType effectType;
+
+    public float slowFallSpeed = 5f;
+    public float effectDuration = 3f;
+    public float bounceHeight = 5f;
+
+    private bool used = false;
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player") && !attached)
+        if (other.CompareTag("Player") && !used)
         {
+            used = true;
+
+            FallSystem fall = other.GetComponent<FallSystem>();
+
             GoodObject existingGood = other.GetComponentInChildren<GoodObject>();
             BadObject existingBad = other.GetComponentInChildren<BadObject>();
 
-            // si hay malo → destruirlo
+            // Si hay malo → destruirlo
             if (existingBad != null)
             {
                 Destroy(existingBad.gameObject);
             }
 
-            // si hay otro bueno → destruirlo
-            if (existingGood != null)
+            // Si hay otro bueno → destruirlo
+            if (existingGood != null && existingGood != this)
             {
                 Destroy(existingGood.gameObject);
             }
 
-            AttachToPlayer(other);
+            if (effectType == EffectType.SlowFall)
+            {
+                fall.ModifyFallSpeed(slowFallSpeed, effectDuration);
+                AttachToPlayer(other.transform);
+                StartCoroutine(DestroyAfterTime(effectDuration));
+            }
+            else if (effectType == EffectType.Bounce)
+            {
+                fall.Bounce(bounceHeight, effectDuration);
+                Destroy(gameObject);
+            }
         }
     }
 
-    void AttachToPlayer(Collider player)
+    void AttachToPlayer(Transform player)
     {
-        attached = true;
-
-        FallSystem fall = player.GetComponent<FallSystem>();
-        FallSystem camFall = Camera.main.GetComponent<FallSystem>();
-
-        if (fall != null)
-        {
-            fall.ModifyFallSpeed(slowFallSpeed, effectDuration);
-        }
-
-        if (Camera.main != null)
-        {
-            if (camFall != null)
-            {
-                camFall.ModifyFallSpeed(slowFallSpeed, effectDuration);
-            }
-        }
-
-        transform.SetParent(player.transform);
+        transform.SetParent(player);
         transform.localPosition = new Vector3(0, -1.5f, 0);
 
         Rigidbody rb = GetComponent<Rigidbody>();
@@ -59,13 +64,11 @@ public class GoodObject : MonoBehaviour
         {
             rb.isKinematic = true;
         }
-
-        StartCoroutine(DestroyAfterEffect());
     }
 
-    IEnumerator DestroyAfterEffect()
+    IEnumerator DestroyAfterTime(float time)
     {
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(time);
         Destroy(gameObject);
     }
 }

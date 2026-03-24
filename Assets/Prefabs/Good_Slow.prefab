@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 5882017676225437307}
   - component: {fileID: 8112428864422393888}
   m_Layer: 0
-  m_Name: GoodObject
+  m_Name: Good_Slow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -150,7 +150,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6089bdb6bf1ba843b81f12a7167da67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  normalFallSpeed: 3
+  fallSpeed: 10
 --- !u!114 &8112428864422393888
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -163,5 +163,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7409197b94920e48a7de351bd2956ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  effectType: 0
   slowFallSpeed: 6
   effectDuration: 3
+  bounceHeight: 0

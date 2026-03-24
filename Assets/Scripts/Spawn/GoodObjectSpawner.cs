@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class GoodObjectSpawner : MonoBehaviour
 {
-    public GameObject goodObjectPrefab;
+    public GameObject[] goodPrefabs;   // Aquí metes Good_Slow y Good_Bounce
     public float activationDistance = 15f;
 
     private Transform player;
@@ -28,6 +28,13 @@ public class GoodObjectSpawner : MonoBehaviour
 
     void SpawnObject()
     {
-        Instantiate(goodObjectPrefab, transform.position, Quaternion.identity);
+        // Elegir prefab aleatorio
+        int randomIndex = Random.Range(0, goodPrefabs.Length);
+
+        // Posición con pequeño random en X
+        Vector3 spawnPos = transform.position;
+        spawnPos.x += Random.Range(-2f, 2f);
+
+        Instantiate(goodPrefabs[randomIndex], spawnPos, Quaternion.identity);
     }
 }

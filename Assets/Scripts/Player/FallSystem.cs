@@ -1,41 +1,60 @@
 using UnityEngine;
 using System.Collections;
 
-[RequireComponent(typeof(Rigidbody))]
 public class FallSystem : MonoBehaviour
 {
-    public float normalFallSpeed = 10f;
+    public float fallSpeed = 10f;
 
-    private float currentFallSpeed;
-    private Rigidbody rb;
+    private float originalFallSpeed;
+    private bool isBouncing = false;
 
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
-        rb.useGravity = false;
-
-        currentFallSpeed = normalFallSpeed;
+        originalFallSpeed = fallSpeed;
     }
 
-    void FixedUpdate()
+    void Update()
     {
-        Vector3 velocity = rb.linearVelocity;
-        velocity.y = -currentFallSpeed;
-        rb.linearVelocity = velocity;
+        if (!isBouncing)
+        {
+            transform.Translate(Vector3.down * fallSpeed * Time.deltaTime);
+        }
     }
 
     public void ModifyFallSpeed(float newSpeed, float duration)
     {
-        StopAllCoroutines();
-        StartCoroutine(FallSpeedEffect(newSpeed, duration));
+        StartCoroutine(ModifySpeedCoroutine(newSpeed, duration));
     }
 
-    IEnumerator FallSpeedEffect(float newSpeed, float duration)
+    IEnumerator ModifySpeedCoroutine(float newSpeed, float duration)
     {
-        currentFallSpeed = newSpeed;
-
+        fallSpeed = newSpeed;
         yield return new WaitForSeconds(duration);
+        fallSpeed = originalFallSpeed;
+    }
 
-        currentFallSpeed = normalFallSpeed;
+    public void Bounce(float height, float duration)
+    {
+        StartCoroutine(BounceCoroutine(height, duration));
+    }
+
+    IEnumerator BounceCoroutine(float height, float duration)
+    {
+        isBouncing = true;
+
+        Vector3 startPos = transform.position;
+        Vector3 targetPos = new Vector3(transform.position.x, transform.position.y + height, transform.position.z);
+
+        float time = 0f;
+
+        while (time < duration)
+        {
+            transform.position = Vector3.Lerp(startPos, targetPos, time / duration);
+            time += Time.deltaTime;
+            yield return null;
+        }
+
+        transform.position = targetPos;
+        isBouncing = false;
     }
 }
