@@ -15,33 +15,56 @@ public class GoodObject : MonoBehaviour
     {
         if (other.CompareTag("Player") && !attached)
         {
-            attached = true;
             player = other.transform;
 
             FallSystem playerFall = other.GetComponent<FallSystem>();
             FallSystem camFall = Camera.main.GetComponent<FallSystem>();
 
+            // 🔥 ELIMINAR EFECTOS ANTERIORES
+            foreach (Transform child in player)
+            {
+                if (child.GetComponent<GoodObject>() != null || child.GetComponent<BadObject>() != null)
+                {
+                    Destroy(child.gameObject);
+                }
+            }
+
+            // 🔥 BOUNCE
             if (isBounce)
             {
-                playerFall.Bounce(bounceHeight, 0.5f);
+                if (playerFall != null)
+                {
+                    playerFall.Bounce(bounceHeight, 0.5f);
+                }
+
                 if (camFall != null)
+                {
                     camFall.Bounce(bounceHeight, 0.5f);
+                }
 
                 Destroy(gameObject);
                 return;
             }
 
-            // Ralentizar
+            // 🔥 SLOW
+            attached = true;
+
             if (playerFall != null)
+            {
                 playerFall.ModifyFallSpeed(slowFallSpeed, effectDuration);
+            }
 
             if (camFall != null)
+            {
                 camFall.ModifyFallSpeed(slowFallSpeed, effectDuration);
+            }
 
-            // Parar su caída
+            // parar caída del objeto
             FallSystem myFall = GetComponent<FallSystem>();
             if (myFall != null)
+            {
                 myFall.enabled = false;
+            }
 
             transform.SetParent(player);
 
@@ -58,7 +81,6 @@ public class GoodObject : MonoBehaviour
     {
         if (attached && player != null)
         {
-            // Siempre pegado debajo
             transform.position = player.position + new Vector3(0, -1.5f, 0);
         }
     }

@@ -13,11 +13,21 @@ public class BadObject : MonoBehaviour
     {
         if (other.CompareTag("Player") && !attached)
         {
-            attached = true;
             player = other.transform;
+
+            // 🔥 ELIMINAR CUALQUIER EFECTO ACTIVO
+            foreach (Transform child in player)
+            {
+                if (child.GetComponent<GoodObject>() != null || child.GetComponent<BadObject>() != null)
+                {
+                    Destroy(child.gameObject);
+                }
+            }
 
             FallSystem playerFall = other.GetComponent<FallSystem>();
             FallSystem camFall = Camera.main.GetComponent<FallSystem>();
+
+            attached = true;
 
             if (playerFall != null)
                 playerFall.ModifyFallSpeed(fastFallSpeed, effectDuration);
@@ -25,7 +35,7 @@ public class BadObject : MonoBehaviour
             if (camFall != null)
                 camFall.ModifyFallSpeed(fastFallSpeed, effectDuration);
 
-            // Parar su caída
+            // parar caída
             FallSystem myFall = GetComponent<FallSystem>();
             if (myFall != null)
                 myFall.enabled = false;
@@ -45,7 +55,6 @@ public class BadObject : MonoBehaviour
     {
         if (attached && player != null)
         {
-            // Siempre pegado encima
             transform.position = player.position + new Vector3(0, 1.5f, 0);
         }
     }
