@@ -7,51 +7,52 @@ public class BadObject : MonoBehaviour
     public float effectDuration = 3f;
 
     private bool attached = false;
+    private Transform player;
 
     void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player") && !attached)
         {
             attached = true;
+            player = other.transform;
 
-            FallSystem fall = other.GetComponent<FallSystem>();
+            FallSystem playerFall = other.GetComponent<FallSystem>();
+            FallSystem camFall = Camera.main.GetComponent<FallSystem>();
 
-            // Si hay un objeto bueno activo → destruirlo
-            GoodObject good = other.GetComponentInChildren<GoodObject>();
-            if (good != null)
-            {
-                Destroy(good.gameObject);
-            }
+            if (playerFall != null)
+                playerFall.ModifyFallSpeed(fastFallSpeed, effectDuration);
 
-            // Aplicar efecto de caída rápida
-            if (fall != null)
-            {
-                fall.ModifyFallSpeed(fastFallSpeed, effectDuration);
-            }
+            if (camFall != null)
+                camFall.ModifyFallSpeed(fastFallSpeed, effectDuration);
 
-            // Pegarse encima del player
-            AttachToPlayer(other.transform);
+            // Parar su caída
+            FallSystem myFall = GetComponent<FallSystem>();
+            if (myFall != null)
+                myFall.enabled = false;
 
-            // Destruir después del efecto
-            StartCoroutine(DestroyAfterTime(effectDuration));
+            transform.SetParent(player);
+
+            StartCoroutine(DestroyAfterTime());
         }
-    }
 
-    void AttachToPlayer(Transform player)
-    {
-        transform.SetParent(player);
-        transform.localPosition = new Vector3(0, 1.5f, 0); // Encima del player
-
-        Rigidbody rb = GetComponent<Rigidbody>();
-        if (rb != null)
+        if (other.CompareTag("Ground"))
         {
-            rb.isKinematic = true;
+            Destroy(gameObject);
         }
     }
 
-    IEnumerator DestroyAfterTime(float time)
+    void Update()
     {
-        yield return new WaitForSeconds(time);
+        if (attached && player != null)
+        {
+            // Siempre pegado encima
+            transform.position = player.position + new Vector3(0, 1.5f, 0);
+        }
+    }
+
+    IEnumerator DestroyAfterTime()
+    {
+        yield return new WaitForSeconds(effectDuration);
         Destroy(gameObject);
     }
 }

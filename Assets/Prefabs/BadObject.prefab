@@ -133,7 +133,7 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
@@ -150,7 +150,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6089bdb6bf1ba843b81f12a7167da67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  normalFallSpeed: 18
+  fallSpeed: 25
+  cameraTransform: {fileID: 0}
 --- !u!114 &-1239294488714623714
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -163,5 +164,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05ea9fa34614cb0478fe4fc58d02bc5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  heavyFallSpeed: 16
+  fastFallSpeed: 20
   effectDuration: 3

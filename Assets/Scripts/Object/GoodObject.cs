@@ -3,71 +3,69 @@ using System.Collections;
 
 public class GoodObject : MonoBehaviour
 {
-    public enum EffectType
-    {
-        SlowFall,
-        Bounce
-    }
-
-    public EffectType effectType;
-
-    public float slowFallSpeed = 5f;
+    public float slowFallSpeed = 6f;
     public float effectDuration = 3f;
     public float bounceHeight = 5f;
+    public bool isBounce = false;
 
-    private bool used = false;
+    private bool attached = false;
+    private Transform player;
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player") && !used)
+        if (other.CompareTag("Player") && !attached)
         {
-            used = true;
+            attached = true;
+            player = other.transform;
 
-            FallSystem fall = other.GetComponent<FallSystem>();
+            FallSystem playerFall = other.GetComponent<FallSystem>();
+            FallSystem camFall = Camera.main.GetComponent<FallSystem>();
 
-            // Cancelar malo si existe
-            BadObject bad = other.GetComponentInChildren<BadObject>();
-            if (bad != null)
+            if (isBounce)
             {
-                Destroy(bad.gameObject);
+                playerFall.Bounce(bounceHeight, 0.5f);
+                if (camFall != null)
+                    camFall.Bounce(bounceHeight, 0.5f);
+
+                Destroy(gameObject);
+                return;
             }
 
-            // Cancelar otro bueno si existe
-            GoodObject good = other.GetComponentInChildren<GoodObject>();
-            if (good != null && good != this)
-            {
-                Destroy(good.gameObject);
-            }
+            // Ralentizar
+            if (playerFall != null)
+                playerFall.ModifyFallSpeed(slowFallSpeed, effectDuration);
 
-            if (effectType == EffectType.SlowFall)
-            {
-                fall.ModifyFallSpeed(slowFallSpeed, effectDuration);
-                AttachToPlayer(other.transform);
-                StartCoroutine(DestroyAfterTime(effectDuration));
-            }
-            else if (effectType == EffectType.Bounce)
-            {
-                fall.Bounce(bounceHeight, effectDuration);
-                Destroy(gameObject); // la colchoneta NO se pega
-            }
+            if (camFall != null)
+                camFall.ModifyFallSpeed(slowFallSpeed, effectDuration);
+
+            // Parar su caída
+            FallSystem myFall = GetComponent<FallSystem>();
+            if (myFall != null)
+                myFall.enabled = false;
+
+            transform.SetParent(player);
+
+            StartCoroutine(DestroyAfterTime());
+        }
+
+        if (other.CompareTag("Ground"))
+        {
+            Destroy(gameObject);
         }
     }
 
-    void AttachToPlayer(Transform player)
+    void Update()
     {
-        transform.SetParent(player);
-        transform.localPosition = new Vector3(0, -1.5f, 0);
-
-        Rigidbody rb = GetComponent<Rigidbody>();
-        if (rb != null)
+        if (attached && player != null)
         {
-            rb.isKinematic = true;
+            // Siempre pegado debajo
+            transform.position = player.position + new Vector3(0, -1.5f, 0);
         }
     }
 
-    IEnumerator DestroyAfterTime(float time)
+    IEnumerator DestroyAfterTime()
     {
-        yield return new WaitForSeconds(time);
+        yield return new WaitForSeconds(effectDuration);
         Destroy(gameObject);
     }
 }

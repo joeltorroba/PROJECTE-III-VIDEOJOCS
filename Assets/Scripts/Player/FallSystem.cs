@@ -7,6 +7,8 @@ public class FallSystem : MonoBehaviour
     private float originalFallSpeed;
     private bool isBouncing = false;
 
+    public Transform cameraTransform; // arrastra la cámara aquí en el inspector
+
     void Start()
     {
         originalFallSpeed = fallSpeed;
@@ -16,12 +18,19 @@ public class FallSystem : MonoBehaviour
     {
         if (!isBouncing)
         {
-            transform.position += Vector3.down * fallSpeed * Time.deltaTime;
+            Vector3 movement = Vector3.down * fallSpeed * Time.deltaTime;
+            transform.position += movement;
+
+            if (cameraTransform != null)
+            {
+                cameraTransform.position += movement;
+            }
         }
     }
 
     public void ModifyFallSpeed(float newSpeed, float duration)
     {
+        StopAllCoroutines();
         StartCoroutine(SlowFallCoroutine(newSpeed, duration));
     }
 
@@ -34,6 +43,7 @@ public class FallSystem : MonoBehaviour
 
     public void Bounce(float height, float duration)
     {
+        StopAllCoroutines();
         StartCoroutine(BounceCoroutine(height, duration));
     }
 
@@ -41,19 +51,34 @@ public class FallSystem : MonoBehaviour
     {
         isBouncing = true;
 
-        Vector3 startPos = transform.position;
-        Vector3 targetPos = new Vector3(startPos.x, startPos.y + height, startPos.z);
+        Vector3 startPosPlayer = transform.position;
+        Vector3 targetPosPlayer = startPosPlayer + new Vector3(0, height, 0);
+
+        Vector3 startPosCam = cameraTransform.position;
+        Vector3 targetPosCam = startPosCam + new Vector3(0, height, 0);
 
         float time = 0f;
 
         while (time < duration)
         {
-            transform.position = Vector3.Lerp(startPos, targetPos, time / duration);
+            transform.position = Vector3.Lerp(startPosPlayer, targetPosPlayer, time / duration);
+
+            if (cameraTransform != null)
+            {
+                cameraTransform.position = Vector3.Lerp(startPosCam, targetPosCam, time / duration);
+            }
+
             time += Time.deltaTime;
             yield return null;
         }
 
-        transform.position = targetPos;
+        transform.position = targetPosPlayer;
+
+        if (cameraTransform != null)
+        {
+            cameraTransform.position = targetPosCam;
+        }
+
         isBouncing = false;
     }
 }
