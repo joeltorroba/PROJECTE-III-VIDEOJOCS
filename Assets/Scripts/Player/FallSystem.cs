@@ -7,7 +7,7 @@ public class FallSystem : MonoBehaviour
     private float originalFallSpeed;
     private bool isBouncing = false;
 
-    public Transform cameraTransform; // arrastra la c·mara aquÌ en el inspector
+    public Transform cameraTransform; // arrastra la c√°mara aqu√≠ en el inspector
 
     void Start()
     {

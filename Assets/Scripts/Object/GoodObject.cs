@@ -3,10 +3,10 @@ using System.Collections;
 
 public class GoodObject : MonoBehaviour
 {
-    public float slowFallSpeed = 6f;
-    public float effectDuration = 3f;
-    public float bounceHeight = 5f;
     public bool isBounce = false;
+
+    public float fallSpeedEffect = 6f;
+    public float effectDuration = 3f;
 
     private bool attached = false;
     private Transform player;
@@ -15,56 +15,37 @@ public class GoodObject : MonoBehaviour
     {
         if (other.CompareTag("Player") && !attached)
         {
+            attached = true;
             player = other.transform;
+
+            // 🔥 DESTRUIR BAD SI EXISTE
+            BadObject existingBad = other.GetComponentInChildren<BadObject>();
+            if (existingBad != null)
+            {
+                Destroy(existingBad.gameObject);
+            }
 
             FallSystem playerFall = other.GetComponent<FallSystem>();
             FallSystem camFall = Camera.main.GetComponent<FallSystem>();
 
-            // 🔥 ELIMINAR EFECTOS ANTERIORES
-            foreach (Transform child in player)
-            {
-                if (child.GetComponent<GoodObject>() != null || child.GetComponent<BadObject>() != null)
-                {
-                    Destroy(child.gameObject);
-                }
-            }
+            // APLICAR EFECTO SIEMPRE
+            if (playerFall != null)
+                playerFall.ModifyFallSpeed(fallSpeedEffect, effectDuration);
 
-            // 🔥 BOUNCE
+            if (camFall != null)
+                camFall.ModifyFallSpeed(fallSpeedEffect, effectDuration);
+
+            // SI ES BOUNCE → DESAPARECE
             if (isBounce)
             {
-                if (playerFall != null)
-                {
-                    playerFall.Bounce(bounceHeight, 0.5f);
-                }
-
-                if (camFall != null)
-                {
-                    camFall.Bounce(bounceHeight, 0.5f);
-                }
-
                 Destroy(gameObject);
                 return;
             }
 
-            // 🔥 SLOW
-            attached = true;
-
-            if (playerFall != null)
-            {
-                playerFall.ModifyFallSpeed(slowFallSpeed, effectDuration);
-            }
-
-            if (camFall != null)
-            {
-                camFall.ModifyFallSpeed(slowFallSpeed, effectDuration);
-            }
-
-            // parar caída del objeto
+            // SI NO ES BOUNCE → SE PEGA
             FallSystem myFall = GetComponent<FallSystem>();
             if (myFall != null)
-            {
                 myFall.enabled = false;
-            }
 
             transform.SetParent(player);
 
@@ -79,7 +60,7 @@ public class GoodObject : MonoBehaviour
 
     void Update()
     {
-        if (attached && player != null)
+        if (attached && player != null && !isBounce)
         {
             transform.position = player.position + new Vector3(0, -1.5f, 0);
         }

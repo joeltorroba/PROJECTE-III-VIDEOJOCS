@@ -164,7 +164,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7409197b94920e48a7de351bd2956ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slowFallSpeed: 0
-  effectDuration: 2
-  bounceHeight: 20
   isBounce: 1
+  fallSpeedEffect: -20
+  effectDuration: 1.5
