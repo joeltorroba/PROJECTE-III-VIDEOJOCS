@@ -17,7 +17,18 @@ public class GoodObject : MonoBehaviour
         {
             attached = true;
             player = other.transform;
+            // ── ANIMACIÓN ───────────────
+            PlayerAnimationController animCtrl =
+                other.GetComponent<PlayerAnimationController>();
 
+            if (animCtrl != null)
+            {
+                if (isBounce)
+                    animCtrl.SetPropulse();   // objeto que impulsa
+                else
+                    animCtrl.SetLand();       // objeto en el que se apoya
+            }
+            
             // 🔥 DESTRUIR BAD SI EXISTE
             BadObject existingBad = other.GetComponentInChildren<BadObject>();
             if (existingBad != null)
