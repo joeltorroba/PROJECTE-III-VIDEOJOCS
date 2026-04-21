@@ -18,6 +18,11 @@ public class GameManager : MonoBehaviour
     {
         victoryPanel.SetActive(true);
         Time.timeScale = 0f;
+
+        if (ParachuteManager.instance != null)
+        {
+            ParachuteManager.instance.HideUI();
+        }
     }
 
     public void GameOver()
