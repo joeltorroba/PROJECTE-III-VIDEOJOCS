@@ -2,7 +2,7 @@
 
 public class BadObjectSpawner : MonoBehaviour
 {
-    public GameObject badObjectPrefab;
+    public GameObject[] badObjectPrefabs; // ← CAMBIO AQUÍ
 
     public float spawnInterval = 2f;
     public float spawnHeightOffset = 20f;
@@ -33,6 +33,9 @@ public class BadObjectSpawner : MonoBehaviour
 
     void SpawnObject()
     {
+        if (badObjectPrefabs == null || badObjectPrefabs.Length == 0)
+            return;
+
         float randomX;
 
         do
@@ -47,6 +50,8 @@ public class BadObjectSpawner : MonoBehaviour
             player.position.z
         );
 
-        Instantiate(badObjectPrefab, spawnPos, Quaternion.identity);
+        // ← AQUÍ EL RANDOM
+        int randomIndex = Random.Range(0, badObjectPrefabs.Length);
+        Instantiate(badObjectPrefabs[randomIndex], spawnPos, Quaternion.identity);
     }
 }
