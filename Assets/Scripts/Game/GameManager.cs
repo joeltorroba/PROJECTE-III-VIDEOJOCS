@@ -18,11 +18,6 @@ public class GameManager : MonoBehaviour
     {
         victoryPanel.SetActive(true);
         Time.timeScale = 0f;
-
-        if (ParachuteManager.instance != null)
-        {
-            ParachuteManager.instance.HideUI();
-        }
     }
 
     public void GameOver()
@@ -33,11 +28,9 @@ public class GameManager : MonoBehaviour
 
     public void RestartGame()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-    }
-
-    public void GoToMenu()
-    {
-        SceneManager.LoadScene("MainMenu");
+        Time.timeScale = 1f;
+        UnityEngine.SceneManagement.SceneManager.LoadScene(
+            UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex
+        );
     }
 }

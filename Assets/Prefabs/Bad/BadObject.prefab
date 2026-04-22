@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: -1239294488714623714}
   m_Layer: 0
   m_Name: BadObject
-  m_TagString: Untagged
+  m_TagString: FallingObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -164,5 +164,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05ea9fa34614cb0478fe4fc58d02bc5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fastFallSpeed: 20
+  fallSpeedEffect: 18
   effectDuration: 3

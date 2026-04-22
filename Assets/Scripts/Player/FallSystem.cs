@@ -7,11 +7,17 @@ public class FallSystem : MonoBehaviour
     private float originalFallSpeed;
     private bool isBouncing = false;
 
-    public Transform cameraTransform; // arrastra la cámara aquí en el inspector
+    public Transform cameraTransform;
 
     void Start()
     {
         originalFallSpeed = fallSpeed;
+
+        if (cameraTransform != null)
+        {
+            cameraTransform.position = new Vector3(0f, 310f, -14f);
+            cameraTransform.rotation = Quaternion.Euler(36.2f, 0f, 0f);
+        }
     }
 
     void Update()
@@ -80,5 +86,13 @@ public class FallSystem : MonoBehaviour
         }
 
         isBouncing = false;
+    }
+
+    public void FreezeFall()
+    {
+        StopAllCoroutines();
+        isBouncing = false;
+        fallSpeed = 0f;
+        originalFallSpeed = 0f;
     }
 }

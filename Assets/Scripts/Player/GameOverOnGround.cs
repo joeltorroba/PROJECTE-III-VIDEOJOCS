@@ -6,20 +6,32 @@ public class GameOverOnGround : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Ground"))
         {
-            // Parar la caída
             FallSystem fall = GetComponent<FallSystem>();
             if (fall != null)
             {
-                fall.enabled = false;
+                fall.FreezeFall();
             }
 
-            // Animación de impacto
+            // Destruir todos los objetos que caen
+            GameObject[] fallingObjects = GameObject.FindGameObjectsWithTag("FallingObject");
+            foreach (GameObject obj in fallingObjects)
+            {
+                Destroy(obj);
+            }
+
+            // Desactivar todos los spawners
+            GameObject[] spawners = GameObject.FindGameObjectsWithTag("Spawner");
+            foreach (GameObject spawner in spawners)
+            {
+                spawner.SetActive(false);
+            }
+
             PlayerAnimationController animCtrl = GetComponent<PlayerAnimationController>();
 
             if (animCtrl != null)
-                animCtrl.SetDie();   // → Fall Flat Impact
+                animCtrl.SetDie();
             else
-                GameManager.instance.GameOver(); // fallback si no hay anim
+                GameManager.instance.GameOver();
         }
     }
 }

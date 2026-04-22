@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 8112428864422393888}
   m_Layer: 0
   m_Name: Good_Slow
-  m_TagString: Untagged
+  m_TagString: FallingObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
