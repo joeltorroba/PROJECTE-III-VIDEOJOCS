@@ -6,15 +6,15 @@ public class GameOverOnGround : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Ground"))
         {
-            GameOver();
+            // ── ANTES llamabas GameManager directo
+            // ── AHORA: primero la animación, luego GameOver
+            PlayerAnimationController animCtrl =
+                GetComponent<PlayerAnimationController>();
+
+            if (animCtrl != null)
+                animCtrl.SetDie();   // → Fall Flat Impact
+            else
+                GameManager.instance.GameOver(); // fallback si no hay anim
         }
-    }
-
-    void GameOver()
-    {
-        GameManager.instance.GameOver();
-
-        // Detener el juego
-        Time.timeScale = 0f;
     }
 }
