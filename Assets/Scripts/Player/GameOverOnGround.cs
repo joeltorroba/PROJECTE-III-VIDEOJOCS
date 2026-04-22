@@ -6,10 +6,15 @@ public class GameOverOnGround : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Ground"))
         {
-            // ── ANTES llamabas GameManager directo
-            // ── AHORA: primero la animación, luego GameOver
-            PlayerAnimationController animCtrl =
-                GetComponent<PlayerAnimationController>();
+            // Parar la caída
+            FallSystem fall = GetComponent<FallSystem>();
+            if (fall != null)
+            {
+                fall.enabled = false;
+            }
+
+            // Animación de impacto
+            PlayerAnimationController animCtrl = GetComponent<PlayerAnimationController>();
 
             if (animCtrl != null)
                 animCtrl.SetDie();   // → Fall Flat Impact
