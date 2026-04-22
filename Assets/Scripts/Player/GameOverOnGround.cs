@@ -6,15 +6,20 @@ public class GameOverOnGround : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Ground"))
         {
-            GameOver();
+            // Parar la caída
+            FallSystem fall = GetComponent<FallSystem>();
+            if (fall != null)
+            {
+                fall.enabled = false;
+            }
+
+            // Animación de impacto
+            PlayerAnimationController animCtrl = GetComponent<PlayerAnimationController>();
+
+            if (animCtrl != null)
+                animCtrl.SetDie();   // → Fall Flat Impact
+            else
+                GameManager.instance.GameOver(); // fallback si no hay anim
         }
-    }
-
-    void GameOver()
-    {
-        GameManager.instance.GameOver();
-
-        // Detener el juego
-        Time.timeScale = 0f;
     }
 }

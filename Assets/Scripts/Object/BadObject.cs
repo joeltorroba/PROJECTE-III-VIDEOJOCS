@@ -15,7 +15,14 @@ public class BadObject : MonoBehaviour
         {
             attached = true;
             player = other.transform;
+              // ── ANIMACIÓN ───────────────
+            PlayerAnimationController animCtrl =
+                other.GetComponent<PlayerAnimationController>();
 
+                if (animCtrl != null)
+                {
+                    animCtrl.SetHit();   // → activa Fall Flat
+                }
             // 🔥 DESTRUIR GOOD SI EXISTE
             GoodObject existingGood = other.GetComponentInChildren<GoodObject>();
             if (existingGood != null)
