@@ -168,6 +168,7 @@ MonoBehaviour:
   isBounce: 0
   fallSpeedEffect: 6
   effectDuration: 3
+  attachOffset: {x: 0, y: 0, z: 0}
 --- !u!1001 &4533260375139917431
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -73,7 +73,7 @@ public class GoodObject : MonoBehaviour
     {
         if (attached && player != null && !isBounce)
         {
-            transform.position = player.position + new Vector3(0, -1.5f, 0);
+            transform.position = player.position + new Vector3(0, 0.5f, 0);
         }
     }
 
