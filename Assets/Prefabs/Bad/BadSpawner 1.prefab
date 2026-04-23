@@ -45,7 +45,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   badObjectPrefabs:
-  - {fileID: 3713489561677752472, guid: 5e3be9c31b81f3a40980db67bfe3bf84, type: 3}
   - {fileID: 82647516358730881, guid: 14d9bd9b7f74fb4488b42cc0b8e0c30e, type: 3}
   - {fileID: 8426812318474807884, guid: 18889fce44a106a44a86db88ae50bffa, type: 3}
   - {fileID: 3713489561677752472, guid: 14f8a48a3f4454a47a4cbfba854a0672, type: 3}
