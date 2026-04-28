@@ -8,6 +8,8 @@ public class BadObject : MonoBehaviour
 
     private bool attached = false;
     private Transform player;
+    public float damage = 20f;
+   
 
     void OnTriggerEnter(Collider other)
     {
@@ -52,6 +54,12 @@ public class BadObject : MonoBehaviour
         if (other.CompareTag("Ground"))
         {
             Destroy(gameObject);
+        }
+
+        PlayerHealth health = other.GetComponent<PlayerHealth>();
+        if (health != null)
+        {
+            health.TakeDamage(damage); // daño del objeto
         }
     }
 
