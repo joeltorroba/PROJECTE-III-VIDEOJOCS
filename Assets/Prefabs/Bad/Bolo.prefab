@@ -166,3 +166,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fallSpeedEffect: 17
   effectDuration: 1.5
+  damage: 13
