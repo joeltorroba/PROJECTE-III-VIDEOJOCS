@@ -45,4 +45,11 @@ public class PlayerHealth : MonoBehaviour
     {
         GameManager.instance.GameOver();
     }
+    public void HideUI()
+    {
+        if (healthBar != null)
+        {
+            healthBar.gameObject.SetActive(false);
+        }
+    }
 }
