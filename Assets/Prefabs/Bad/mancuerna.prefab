@@ -88,6 +88,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: bf943512264ee3d4182a51a514876230, type: 3}
       insertIndex: -1
       addedObject: {fileID: 724489534923847927}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: bf943512264ee3d4182a51a514876230, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5820638663875337877}
   m_SourcePrefab: {fileID: 100100000, guid: bf943512264ee3d4182a51a514876230, type: 3}
 --- !u!1 &8426812318474807884 stripped
 GameObject:
@@ -156,6 +159,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fallSpeedEffect: 21
   effectDuration: 5
+  damage: 20
+  attachOffset: {x: 0, y: 1.5, z: 0}
 --- !u!114 &724489534923847927
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -170,3 +175,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fallSpeed: 25
   cameraTransform: {fileID: 0}
+--- !u!114 &5820638663875337877
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8426812318474807884}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4a865d5032ccbc4aa95f2238b63b420, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  warningUIPrefab: {fileID: 5275614051830366460, guid: 8238bd8b986d47142a770145ce6e5974, type: 3}

@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 2087926099337039768}
   - component: {fileID: 3071980095719074896}
   - component: {fileID: -1239294488714623714}
+  - component: {fileID: 615829905256850435}
   m_Layer: 0
   m_Name: Extintor_bad
   m_TagString: FallingObject
@@ -168,6 +169,20 @@ MonoBehaviour:
   fallSpeedEffect: 18
   effectDuration: 3
   damage: 30
+  attachOffset: {x: 0, y: 1.5, z: 0}
+--- !u!114 &615829905256850435
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3713489561677752472}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4a865d5032ccbc4aa95f2238b63b420, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  warningUIPrefab: {fileID: 5275614051830366460, guid: 8238bd8b986d47142a770145ce6e5974, type: 3}
 --- !u!1001 &5488487042710761562
 PrefabInstance:
   m_ObjectHideFlags: 0

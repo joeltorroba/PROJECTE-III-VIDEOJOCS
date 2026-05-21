@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 3568201838808907382}
   - component: {fileID: 1122659986349870267}
   - component: {fileID: 3322450018000787211}
+  - component: {fileID: -5260521889912263930}
   m_Layer: 0
   m_Name: Bolo
   m_TagString: FallingObject
@@ -167,3 +168,17 @@ MonoBehaviour:
   fallSpeedEffect: 17
   effectDuration: 1.5
   damage: 13
+  attachOffset: {x: 0, y: 1.5, z: 0}
+--- !u!114 &-5260521889912263930
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 82647516358730881}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4a865d5032ccbc4aa95f2238b63b420, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  warningUIPrefab: {fileID: 5275614051830366460, guid: 8238bd8b986d47142a770145ce6e5974, type: 3}
