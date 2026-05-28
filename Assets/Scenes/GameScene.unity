@@ -831,22 +831,6 @@ PrefabInstance:
       propertyPath: spawnHeightOffset
       value: 50
       objectReference: {fileID: 0}
-    - target: {fileID: 3297320137443163813, guid: efacac86d4ef2134ead9a349fcf9b2b2, type: 3}
-      propertyPath: badObjectPrefabs.Array.size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3297320137443163813, guid: efacac86d4ef2134ead9a349fcf9b2b2, type: 3}
-      propertyPath: 'badObjectPrefabs.Array.data[1]'
-      value: 
-      objectReference: {fileID: 3713489561677752472, guid: 242dc6f3382ee204fb836446a6b9db38, type: 3}
-    - target: {fileID: 3297320137443163813, guid: efacac86d4ef2134ead9a349fcf9b2b2, type: 3}
-      propertyPath: 'badObjectPrefabs.Array.data[3]'
-      value: 
-      objectReference: {fileID: 3713489561677752472, guid: 6c43ee03e3bb1fd40a849ee6b6898464, type: 3}
-    - target: {fileID: 3297320137443163813, guid: efacac86d4ef2134ead9a349fcf9b2b2, type: 3}
-      propertyPath: 'badObjectPrefabs.Array.data[4]'
-      value: 
-      objectReference: {fileID: 3713489561677752472, guid: a0609b70db5183641b3ed6d6027b57f5, type: 3}
     - target: {fileID: 4142478224866494881, guid: efacac86d4ef2134ead9a349fcf9b2b2, type: 3}
       propertyPath: m_LocalPosition.x
       value: 5.9322543
