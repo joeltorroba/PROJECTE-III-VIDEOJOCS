@@ -15,7 +15,7 @@ public class FallSystem : MonoBehaviour
 
         if (cameraTransform != null)
         {
-            cameraTransform.position = new Vector3(0f, 310f, -14f);
+            cameraTransform.position = new Vector3(0f, 1010f, -14f);
             cameraTransform.rotation = Quaternion.Euler(36.2f, 0f, 0f);
         }
     }

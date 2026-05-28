@@ -151,7 +151,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6089bdb6bf1ba843b81f12a7167da67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fallSpeed: 25
+  fallSpeed: 35
   cameraTransform: {fileID: 0}
 --- !u!114 &3322450018000787211
 MonoBehaviour:
