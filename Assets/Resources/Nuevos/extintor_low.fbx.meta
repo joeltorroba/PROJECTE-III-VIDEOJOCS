@@ -3,12 +3,17 @@ guid: 41803979839b5fa498c924010d73db73
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Goma_negra_mat.001
+    second: {fileID: 2100000, guid: fe228cd99a2c687469770d2a76c57d78, type: 2}
   materials:
     materialImportMode: 2
     materialName: 1
     materialSearch: 0
-    materialLocation: 0
+    materialLocation: 1
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
