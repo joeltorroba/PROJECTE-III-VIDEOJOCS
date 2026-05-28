@@ -47,4 +47,10 @@ MonoBehaviour:
   goodPrefabs:
   - {fileID: 6003033542554741231, guid: 777b205ec399cbd40afca1d7b96cf04c, type: 3}
   - {fileID: 6003033542554741231, guid: 702481996504b6b418478b8def9b694e, type: 3}
+  - {fileID: 6003033542554741231, guid: 777b205ec399cbd40afca1d7b96cf04c, type: 3}
+  - {fileID: 6003033542554741231, guid: 21af79dc4d6508e4281edbab53557df4, type: 3}
+  - {fileID: 6003033542554741231, guid: 1342fcd4606e0c042ab9ef4cff471a8b, type: 3}
+  - {fileID: 6003033542554741231, guid: 87b0a97400bc54344b70cecbff285aba, type: 3}
+  - {fileID: 6003033542554741231, guid: 9d7a0217e7d8acd4e9ee227233526cba, type: 3}
+  - {fileID: 6003033542554741231, guid: ec2a6d544eff0f1409154b42161ab259, type: 3}
   activationDistance: 15

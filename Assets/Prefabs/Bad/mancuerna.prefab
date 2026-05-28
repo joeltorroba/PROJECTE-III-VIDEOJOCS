@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: -1239294488714623714}
   - component: {fileID: 615829905256850435}
   m_Layer: 0
-  m_Name: Mancuerna
+  m_Name: mancuerna
   m_TagString: FallingObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -33,7 +33,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -12.8302145, y: 45.02, z: -6.799381}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.2121, y: 1.2121, z: 1.2121}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 9142622155879203217}
