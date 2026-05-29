@@ -23,9 +23,9 @@ public class GameManager : MonoBehaviour
     public void GameOver()
     {
 
-        if (FindObjectOfType<PlayerHealth>() != null)
+        if (FindFirstObjectByType<PlayerHealth>() != null)
         {
-            FindObjectOfType<PlayerHealth>().HideUI();
+            FindFirstObjectByType<PlayerHealth>().HideUI();
         }
         gameOverPanel.SetActive(true);
         Time.timeScale = 0f;
