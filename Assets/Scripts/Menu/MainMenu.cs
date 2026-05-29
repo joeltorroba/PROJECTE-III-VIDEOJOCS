@@ -1,11 +1,19 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
+    public GameObject menuPrincipal;
+    public GameObject personalizar;
+
     public void PlayGame()
     {
-        SceneManager.LoadScene("GameScene");
+        // Tu código
+    }
+
+    public void OpenPersonalizar()
+    {
+        menuPrincipal.SetActive(false);
+        personalizar.SetActive(true);
     }
 
     public void QuitGame()
