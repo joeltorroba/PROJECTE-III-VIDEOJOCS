@@ -20,26 +20,17 @@ public class PersonalizarManager : MonoBehaviour
         MostrarVerde();
     }
 
-    IEnumerator FadeIn(CanvasGroup canvasGroup, Transform objeto)
+    IEnumerator FadeIn(CanvasGroup canvasGroup)
     {
         canvasGroup.alpha = 0f;
-        objeto.localScale = Vector3.one * 0.92f;
 
         while (canvasGroup.alpha < 1f)
         {
-            canvasGroup.alpha += Time.deltaTime * 1.8f;
-
-            objeto.localScale = Vector3.Lerp(
-                objeto.localScale,
-                Vector3.one,
-                Time.deltaTime * 4f
-            );
-
+            canvasGroup.alpha += Time.deltaTime * 5f;
             yield return null;
         }
 
         canvasGroup.alpha = 1f;
-        objeto.localScale = Vector3.one;
     }
 
     public void MostrarVerde()
@@ -49,7 +40,7 @@ public class PersonalizarManager : MonoBehaviour
         Rojo.SetActive(false);
         Oro.SetActive(false);
 
-        StartCoroutine(FadeIn(verdeCanvas, Verde.transform));
+        StartCoroutine(FadeIn(verdeCanvas));
     }
 
     public void MostrarArtico()
@@ -59,7 +50,7 @@ public class PersonalizarManager : MonoBehaviour
         Rojo.SetActive(false);
         Oro.SetActive(false);
 
-        StartCoroutine(FadeIn(articoCanvas, Artico.transform));
+        StartCoroutine(FadeIn(articoCanvas));
     }
 
     public void MostrarRojo()
@@ -69,7 +60,7 @@ public class PersonalizarManager : MonoBehaviour
         Rojo.SetActive(true);
         Oro.SetActive(false);
 
-        StartCoroutine(FadeIn(rojoCanvas, Rojo.transform));
+        StartCoroutine(FadeIn(rojoCanvas));
     }
 
     public void MostrarOro()
@@ -79,6 +70,6 @@ public class PersonalizarManager : MonoBehaviour
         Rojo.SetActive(false);
         Oro.SetActive(true);
 
-        StartCoroutine(FadeIn(oroCanvas, Oro.transform));
+        StartCoroutine(FadeIn(oroCanvas));
     }
 }
