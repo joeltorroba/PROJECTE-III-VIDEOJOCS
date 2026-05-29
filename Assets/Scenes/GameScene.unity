@@ -6773,6 +6773,14 @@ PrefabInstance:
       propertyPath: shieldUIFill
       value: 
       objectReference: {fileID: 286066588}
+    - target: {fileID: 857968207787986694, guid: 6ebddd8b7b573a5438e734b62183985f, type: 3}
+      propertyPath: leftLimit
+      value: -5
+      objectReference: {fileID: 0}
+    - target: {fileID: 857968207787986694, guid: 6ebddd8b7b573a5438e734b62183985f, type: 3}
+      propertyPath: acceleration
+      value: 60
+      objectReference: {fileID: 0}
     - target: {fileID: 4809278654271156566, guid: 6ebddd8b7b573a5438e734b62183985f, type: 3}
       propertyPath: m_Name
       value: Player
