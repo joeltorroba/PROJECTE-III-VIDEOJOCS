@@ -18,6 +18,12 @@ public class MainMenu : MonoBehaviour
         personalizar.SetActive(true);
     }
 
+    public void VolverMenu()
+    {
+        personalizar.SetActive(false);
+        menuPrincipal.SetActive(true);
+    }
+
     public void QuitGame()
     {
         Debug.Log("Salir del juego");
