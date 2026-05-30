@@ -17,7 +17,11 @@ public class PersonalizarManager : MonoBehaviour
 
     private void Start()
     {
-        MostrarVerde();
+        // Solo muestra la primera ficha al abrir
+        Verde.SetActive(true);
+        Artico.SetActive(false);
+        Rojo.SetActive(false);
+        Oro.SetActive(false);
     }
 
     IEnumerator FadeIn(CanvasGroup canvasGroup)
@@ -35,41 +39,61 @@ public class PersonalizarManager : MonoBehaviour
 
     public void MostrarVerde()
     {
+        PlayerPrefs.SetInt("SkinEquipada", 0);
+        PlayerPrefs.Save();
+
         Verde.SetActive(true);
         Artico.SetActive(false);
         Rojo.SetActive(false);
         Oro.SetActive(false);
 
         StartCoroutine(FadeIn(verdeCanvas));
+
+        Debug.Log("Skin guardada: 0");
     }
 
     public void MostrarArtico()
     {
+        PlayerPrefs.SetInt("SkinEquipada", 1);
+        PlayerPrefs.Save();
+
         Verde.SetActive(false);
         Artico.SetActive(true);
         Rojo.SetActive(false);
         Oro.SetActive(false);
 
         StartCoroutine(FadeIn(articoCanvas));
+
+        Debug.Log("Skin guardada: 1");
     }
 
     public void MostrarRojo()
     {
+        PlayerPrefs.SetInt("SkinEquipada", 2);
+        PlayerPrefs.Save();
+
         Verde.SetActive(false);
         Artico.SetActive(false);
         Rojo.SetActive(true);
         Oro.SetActive(false);
 
         StartCoroutine(FadeIn(rojoCanvas));
+
+        Debug.Log("Skin guardada: 2");
     }
 
     public void MostrarOro()
     {
+        PlayerPrefs.SetInt("SkinEquipada", 3);
+        PlayerPrefs.Save();
+
         Verde.SetActive(false);
         Artico.SetActive(false);
         Rojo.SetActive(false);
         Oro.SetActive(true);
 
         StartCoroutine(FadeIn(oroCanvas));
+
+        Debug.Log("Skin guardada: 3");
     }
 }
