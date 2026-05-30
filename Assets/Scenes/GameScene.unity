@@ -59320,7 +59320,12 @@ MonoBehaviour:
   analogSynthGuitarSource: {fileID: 1795020170}
   bassonsVioloncelliSource: {fileID: 1795020169}
   skyRunnerSource: {fileID: 1795020168}
-  volumenMaximoGuitar: 0.6
+  volumenGeneralMaster: 0.15
+  maxHornBase: 0.8
+  maxGuitar: 0.5
+  maxVioloncelli: 0.8
+  maxSkyRunner: 0.7
+  multiplicadorVioloncelliTension: 1.5
 --- !u!4 &1795020173
 Transform:
   m_ObjectHideFlags: 0

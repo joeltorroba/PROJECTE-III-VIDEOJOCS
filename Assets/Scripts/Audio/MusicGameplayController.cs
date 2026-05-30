@@ -8,9 +8,17 @@ public class MusicGameplayController : MonoBehaviour
     public AudioSource bassonsVioloncelliSource;
     public AudioSource skyRunnerSource;
 
-    [Header("Ajustes de Mezcla")]
-    [Range(0f, 1f)] public float volumenMaximoBase = 0.7f;
-    [Range(0f, 1f)] public float volumenMaximoGuitar = 0.4f;
+    [Header("Ajustes de Mezcla Global")]
+    [Range(0f, 1f)] public float volumenGeneralMaster = 0.22f; // Subido un pelín (de 0.15 a 0.22)
+
+    [Header("Límites por Instrumento")]
+    [Range(0f, 1f)] public float maxHornBase = 0.8f;
+    [Range(0f, 1f)] public float maxGuitar = 0.5f;
+    [Range(0f, 1f)] public float maxVioloncelli = 0.9f;
+    [Range(0f, 1f)] public float maxSkyRunner = 0.7f;
+
+    [Header("Multiplicador de Tensión")]
+    [Range(1f, 3f)] public float multiplicadorVioloncelliTension = 1.5f; // Fuerza un extra a los chelos malos
 
     private PlayerHealth playerHealth;
     private Transform playerTransform;
@@ -58,28 +66,37 @@ public class MusicGameplayController : MonoBehaviour
         if (bassonsVioloncelliSource != null) bassonsVioloncelliSource.PlayScheduled(startTime);
         if (skyRunnerSource != null) skyRunnerSource.PlayScheduled(startTime);
 
-        if (hornDrippingSource != null) hornDrippingSource.volume = volumenMaximoBase;
-        if (analogSynthGuitarSource != null) analogSynthGuitarSource.volume = volumenMaximoGuitar;
+        if (hornDrippingSource != null) hornDrippingSource.volume = maxHornBase * volumenGeneralMaster;
+        if (analogSynthGuitarSource != null) analogSynthGuitarSource.volume = maxGuitar * volumenGeneralMaster;
         if (bassonsVioloncelliSource != null) bassonsVioloncelliSource.volume = 0f;
         if (skyRunnerSource != null) skyRunnerSource.volume = 0f;
     }
 
     void ActualizarMusicaDinamica(float healthPercent, float altitudePercent)
     {
-        if (hornDrippingSource != null) hornDrippingSource.volume = volumenMaximoBase;
-        if (analogSynthGuitarSource != null) analogSynthGuitarSource.volume = healthPercent * volumenMaximoGuitar;
-        if (bassonsVioloncelliSource != null) bassonsVioloncelliSource.volume = (1f - healthPercent) * volumenMaximoBase;
+        if (hornDrippingSource != null)
+            hornDrippingSource.volume = maxHornBase * volumenGeneralMaster;
+
+        if (analogSynthGuitarSource != null)
+            analogSynthGuitarSource.volume = healthPercent * maxGuitar * volumenGeneralMaster;
+
+        if (bassonsVioloncelliSource != null)
+        {
+            // Calcula el volumen dinámico y le aplica el multiplicador de tensión extra
+            float volVioloncelli = (1f - healthPercent) * maxVioloncelli * volumenGeneralMaster * multiplicadorVioloncelliTension;
+            bassonsVioloncelliSource.volume = Mathf.Clamp01(volVioloncelli);
+        }
 
         float closenessToGround = 1f - altitudePercent;
         if (skyRunnerSource != null)
         {
             if (healthPercent > 0.4f)
             {
-                skyRunnerSource.volume = closenessToGround * healthPercent * volumenMaximoBase;
+                skyRunnerSource.volume = closenessToGround * healthPercent * maxSkyRunner * volumenGeneralMaster;
             }
             else
             {
-                skyRunnerSource.volume = Mathf.Lerp(skyRunnerSource.volume, 0f, Time.deltaTime * 2f);
+                skyRunnerSource.volume = Mathf.Lerp(skyRunnerSource.volume, 0f, Time.deltaTime * 4f);
             }
         }
     }
