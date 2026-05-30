@@ -22,11 +22,11 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
-
         if (FindFirstObjectByType<PlayerHealth>() != null)
         {
             FindFirstObjectByType<PlayerHealth>().HideUI();
         }
+
         gameOverPanel.SetActive(true);
         Time.timeScale = 0f;
     }
@@ -34,8 +34,15 @@ public class GameManager : MonoBehaviour
     public void RestartGame()
     {
         Time.timeScale = 1f;
-        UnityEngine.SceneManagement.SceneManager.LoadScene(
-            UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex
+
+        SceneManager.LoadScene(
+            SceneManager.GetActiveScene().buildIndex
         );
+    }
+
+    public void ReturnToMainMenu()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("MainMenu");
     }
 }
