@@ -23,7 +23,7 @@ public class BadObject : MonoBehaviour
                     other.GetComponent<PlayerAnimationController>();
 
                 if (animCtrl != null)
-                   animCtrl.SetHit(effectDuration);   // → activa Fall Flat
+                   animCtrl.SetHit();   // → activa Fall Flat
                 // ────────────────────────────────────────────────
             // Si ya hay otro objeto malo pegado, eliminarlo
             BadObject existingBad = other.GetComponentInChildren<BadObject>();
