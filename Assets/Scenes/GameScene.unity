@@ -6769,6 +6769,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 121394314187585347, guid: 6ebddd8b7b573a5438e734b62183985f, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 431377768279567046, guid: 6ebddd8b7b573a5438e734b62183985f, type: 3}
       propertyPath: shieldUIFill
       value: 
@@ -6779,7 +6783,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 857968207787986694, guid: 6ebddd8b7b573a5438e734b62183985f, type: 3}
       propertyPath: acceleration
-      value: 60
+      value: 80
       objectReference: {fileID: 0}
     - target: {fileID: 4809278654271156566, guid: 6ebddd8b7b573a5438e734b62183985f, type: 3}
       propertyPath: m_Name

@@ -12,10 +12,10 @@ GameObject:
   - component: {fileID: 5764475292443735982}
   - component: {fileID: 8298638238167474661}
   - component: {fileID: 3568201838808907382}
-  - component: {fileID: 5356988036794385374}
   - component: {fileID: 1122659986349870267}
   - component: {fileID: 3322450018000787211}
   - component: {fileID: -5260521889912263930}
+  - component: {fileID: 4358361934924886873}
   m_Layer: 0
   m_Name: Bolo
   m_TagString: FallingObject
@@ -119,27 +119,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!135 &5356988036794385374
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 82647516358730881}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 0.2
-  m_Center: {x: 0, y: 0.2, z: 0.00000043213367}
 --- !u!114 &1122659986349870267
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -183,6 +162,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   warningUIPrefab: {fileID: 5275614051830366460, guid: 8238bd8b986d47142a770145ce6e5974, type: 3}
+--- !u!136 &4358361934924886873
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 82647516358730881}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.26
+  m_Height: 0.57
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.28, z: 0}
 --- !u!1001 &2595952382297075819
 PrefabInstance:
   m_ObjectHideFlags: 0
