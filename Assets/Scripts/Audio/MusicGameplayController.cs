@@ -9,7 +9,8 @@ public class MusicGameplayController : MonoBehaviour
     public AudioSource skyRunnerSource;
 
     [Header("Ajustes de Mezcla")]
-    [Range(0f, 1f)] public float volumenMaximoGuitar = 0.6f;
+    [Range(0f, 1f)] public float volumenMaximoBase = 0.7f;
+    [Range(0f, 1f)] public float volumenMaximoGuitar = 0.4f;
 
     private PlayerHealth playerHealth;
     private Transform playerTransform;
@@ -57,7 +58,7 @@ public class MusicGameplayController : MonoBehaviour
         if (bassonsVioloncelliSource != null) bassonsVioloncelliSource.PlayScheduled(startTime);
         if (skyRunnerSource != null) skyRunnerSource.PlayScheduled(startTime);
 
-        if (hornDrippingSource != null) hornDrippingSource.volume = 1f;
+        if (hornDrippingSource != null) hornDrippingSource.volume = volumenMaximoBase;
         if (analogSynthGuitarSource != null) analogSynthGuitarSource.volume = volumenMaximoGuitar;
         if (bassonsVioloncelliSource != null) bassonsVioloncelliSource.volume = 0f;
         if (skyRunnerSource != null) skyRunnerSource.volume = 0f;
@@ -65,16 +66,16 @@ public class MusicGameplayController : MonoBehaviour
 
     void ActualizarMusicaDinamica(float healthPercent, float altitudePercent)
     {
-        if (hornDrippingSource != null) hornDrippingSource.volume = 1f;
+        if (hornDrippingSource != null) hornDrippingSource.volume = volumenMaximoBase;
         if (analogSynthGuitarSource != null) analogSynthGuitarSource.volume = healthPercent * volumenMaximoGuitar;
-        if (bassonsVioloncelliSource != null) bassonsVioloncelliSource.volume = 1f - healthPercent;
+        if (bassonsVioloncelliSource != null) bassonsVioloncelliSource.volume = (1f - healthPercent) * volumenMaximoBase;
 
         float closenessToGround = 1f - altitudePercent;
         if (skyRunnerSource != null)
         {
             if (healthPercent > 0.4f)
             {
-                skyRunnerSource.volume = closenessToGround * healthPercent;
+                skyRunnerSource.volume = closenessToGround * healthPercent * volumenMaximoBase;
             }
             else
             {

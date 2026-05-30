@@ -10,7 +10,7 @@ public class WindController : MonoBehaviour
         if (windSource != null)
         {
             windSource.loop = true;
-            windSource.volume = 0.5f;
+            windSource.volume = 1.0f;
             windSource.playOnAwake = false;
             windSource.Play();
         }
