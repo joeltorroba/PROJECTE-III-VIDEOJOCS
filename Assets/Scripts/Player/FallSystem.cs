@@ -6,6 +6,7 @@ public class FallSystem : MonoBehaviour
     public float fallSpeed = 10f;
     private float originalFallSpeed;
     private bool isBouncing = false;
+    public Vector3 posicionCam= new Vector3(0f, 1010f, -14f);
 
     public Transform cameraTransform;
 
@@ -15,7 +16,7 @@ public class FallSystem : MonoBehaviour
 
         if (cameraTransform != null)
         {
-            cameraTransform.position = new Vector3(0f, 1010f, -14f);
+            cameraTransform.position = posicionCam;
             cameraTransform.rotation = Quaternion.Euler(36.2f, 0f, 0f);
         }
     }
