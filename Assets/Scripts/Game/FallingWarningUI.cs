@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class FallingWarningUI : MonoBehaviour
 {
@@ -10,25 +11,40 @@ public class FallingWarningUI : MonoBehaviour
 
     Camera cam;
 
+    bool warningCreated = false;
+
     void Start()
     {
         cam = Camera.main;
-
-        Canvas canvas = FindFirstObjectByType<Canvas>();
-
-        warningUI = Instantiate(warningUIPrefab, canvas.transform);
-
-        rect = warningUI.GetComponent<RectTransform>();
     }
 
     void Update()
     {
+        // SI ESTAMOS EN EL TUTORIAL Y TODAVÍA NO HEMOS LLEGADO
+        // AL PASO DE OBJETOS MALOS, NO MOSTRAR NADA
+        if (!warningCreated)
+        {
+            if (SceneManager.GetActiveScene().name == "TutorialScene")
+            {
+                if (!TutorialManager.canShowBadWarning)
+                    return;
+            }
+
+            Canvas canvas = FindFirstObjectByType<Canvas>();
+
+            warningUI = Instantiate(warningUIPrefab, canvas.transform);
+
+            rect = warningUI.GetComponent<RectTransform>();
+
+            warningCreated = true;
+        }
+
         if (warningUI == null) return;
 
-        Vector3 viewportPos = cam.WorldToViewportPoint(transform.position);
-
-        // Si ya entra en pantalla → borrar alerta
-        float distanceToPlayer = Mathf.Abs(transform.position.y - GameObject.FindGameObjectWithTag("Player").transform.position.y);
+        float distanceToPlayer = Mathf.Abs(
+            transform.position.y -
+            GameObject.FindGameObjectWithTag("Player").transform.position.y
+        );
 
         if (distanceToPlayer < 13f)
         {
@@ -39,11 +55,13 @@ public class FallingWarningUI : MonoBehaviour
 
         Vector3 screenPos = cam.WorldToScreenPoint(transform.position);
 
-        // Mantener arriba
         screenPos.y = Screen.height - 80f;
 
-        // Limitar laterales
-        screenPos.x = Mathf.Clamp(screenPos.x, 50f, Screen.width - 50f);
+        screenPos.x = Mathf.Clamp(
+            screenPos.x,
+            50f,
+            Screen.width - 50f
+        );
 
         rect.position = screenPos;
     }
