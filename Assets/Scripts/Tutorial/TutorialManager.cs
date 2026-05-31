@@ -1,11 +1,11 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 [System.Serializable]
 public class TutorialStep
 {
     public string stepName;
 
-    [Header("Activaci�n")]
+    [Header("Activación")]
     public float triggerHeight;
 
     [Header("UI")]
@@ -23,12 +23,17 @@ public class TutorialStep
 
 public class TutorialManager : MonoBehaviour
 {
+    // ← ESTA VARIABLE ES LA NUEVA
+    public static bool canShowBadWarning = false;
+
     public Transform player;
 
     public TutorialStep[] steps;
 
     void Start()
     {
+        canShowBadWarning = false;
+
         foreach (TutorialStep step in steps)
         {
             if (step.panel != null)
@@ -55,6 +60,14 @@ public class TutorialManager : MonoBehaviour
     void ActivateStep(TutorialStep step)
     {
         step.hasTriggered = true;
+
+        // ← AQUÍ ESTÁ LA MAGIA
+        // Cuando llegue el paso llamado "Bad Object"
+        // se activan los warnings
+        if (step.stepName == "Bad Object")
+        {
+            canShowBadWarning = true;
+        }
 
         if (step.panel != null)
             step.panel.SetActive(true);
