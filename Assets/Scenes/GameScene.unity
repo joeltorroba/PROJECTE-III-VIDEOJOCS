@@ -19724,7 +19724,7 @@ GameObject:
   - component: {fileID: 527463472}
   - component: {fileID: 527463471}
   m_Layer: 0
-  m_Name: _SkinManager
+  m_Name: SkinManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
