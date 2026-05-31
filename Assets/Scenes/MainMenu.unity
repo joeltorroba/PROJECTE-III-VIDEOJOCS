@@ -3565,11 +3565,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c0c6ee3fb279ef449ab5d0fc13532cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  popups:
-  - {fileID: 902374384}
-  - {fileID: 1827737975}
-  - {fileID: 860604076}
-  tiempoEntrePopups: 5
 --- !u!4 &1174582689
 Transform:
   m_ObjectHideFlags: 0
@@ -4157,7 +4152,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1407311118
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6804,7 +6799,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2130490135
 RectTransform:
   m_ObjectHideFlags: 0
