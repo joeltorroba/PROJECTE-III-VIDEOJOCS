@@ -18,7 +18,13 @@ public class BadObject : MonoBehaviour
         {
             attached = true;
             player = other.transform;
+               // ── ANIMACIÓN ── añade estas líneas ──────────────
+                PlayerAnimationController animCtrl =
+                    other.GetComponent<PlayerAnimationController>();
 
+                if (animCtrl != null)
+                   animCtrl.SetHit();   // → activa Fall Flat
+                // ────────────────────────────────────────────────
             // Si ya hay otro objeto malo pegado, eliminarlo
             BadObject existingBad = other.GetComponentInChildren<BadObject>();
             if (existingBad != null && existingBad != this)
