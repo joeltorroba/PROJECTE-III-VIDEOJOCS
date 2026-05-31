@@ -89,6 +89,11 @@ public class BadObject : MonoBehaviour
     IEnumerator DestroyAfterTime()
     {
         yield return new WaitForSeconds(effectDuration);
+         // Avisar al animator que el efecto terminó
+    PlayerAnimationController animCtrl = 
+        player.GetComponent<PlayerAnimationController>();
+    if (animCtrl != null)
+        animCtrl.SetEndEffect();
         Destroy(gameObject);
     }
 }
