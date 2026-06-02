@@ -23,6 +23,11 @@ public class MainMenu : MonoBehaviour
         personalizar.SetActive(false);
         menuPrincipal.SetActive(true);
     }
+    
+    public void Tutorial()
+    {
+        SceneManager.LoadScene("TutorialScene");
+    }
 
     public void QuitGame()
     {
