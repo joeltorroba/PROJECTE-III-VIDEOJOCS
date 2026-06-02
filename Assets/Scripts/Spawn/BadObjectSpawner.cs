@@ -2,7 +2,7 @@
 
 public class BadObjectSpawner : MonoBehaviour
 {
-    public GameObject[] badObjectPrefabs; // ← CAMBIO AQUÍ
+    public GameObject[] badObjectPrefabs;
 
     public float spawnInterval = 2f;
     public float spawnHeightOffset = 20f;
@@ -22,6 +22,9 @@ public class BadObjectSpawner : MonoBehaviour
 
     void Update()
     {
+        if (TimeFreezeSystem.timeFrozen)
+            return;
+
         timer += Time.deltaTime;
 
         if (timer >= spawnInterval)
@@ -50,8 +53,12 @@ public class BadObjectSpawner : MonoBehaviour
             player.position.z
         );
 
-        // ← AQUÍ EL RANDOM
         int randomIndex = Random.Range(0, badObjectPrefabs.Length);
-        Instantiate(badObjectPrefabs[randomIndex], spawnPos, Quaternion.identity);
+
+        Instantiate(
+            badObjectPrefabs[randomIndex],
+            spawnPos,
+            Quaternion.identity
+        );
     }
 }
