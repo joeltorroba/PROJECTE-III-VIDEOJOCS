@@ -23,6 +23,20 @@ public class FallSystem : MonoBehaviour
 
     void Update()
     {
+        if (TimeFreezeSystem.timeFrozen && !CompareTag("Player"))
+            return;
+
+        if (!isBouncing)
+        {
+            Vector3 movement = Vector3.down * fallSpeed * Time.deltaTime;
+            transform.position += movement;
+
+            if (cameraTransform != null)
+            {
+                cameraTransform.position += movement;
+            }
+        }
+
         if (!isBouncing)
         {
             Vector3 movement = Vector3.down * fallSpeed * Time.deltaTime;
