@@ -221,7 +221,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fallSpeedEffect: 20
-  effectDuration: 5
+  effectDuration: 4
   damage: 20
   hitSound: {fileID: 8300000, guid: c551d2ad0be0a894591597929871d5b6, type: 3}
   volume: 2

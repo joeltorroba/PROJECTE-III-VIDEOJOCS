@@ -32,8 +32,8 @@ Transform:
   m_GameObject: {fileID: 3713489561677752472}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -12.8302145, y: 44.924736, z: -6.799381}
-  m_LocalScale: {x: 1.359549, y: 1.3252205, z: 1.359549}
+  m_LocalPosition: {x: -12.805, y: 44.924, z: -6.8122}
+  m_LocalScale: {x: 1.119208, y: 1.090948, z: 1.119208}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7732206295245557808}
@@ -172,7 +172,7 @@ MonoBehaviour:
   damage: 30
   hitSound: {fileID: 8300000, guid: c551d2ad0be0a894591597929871d5b6, type: 3}
   volume: 2
-  attachOffset: {x: 0, y: 1.5, z: 0}
+  attachOffset: {x: 0, y: 2, z: 0}
 --- !u!114 &615829905256850435
 MonoBehaviour:
   m_ObjectHideFlags: 0

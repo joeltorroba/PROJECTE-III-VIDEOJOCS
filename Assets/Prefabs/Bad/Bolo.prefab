@@ -147,8 +147,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fallSpeedEffect: 17
-  effectDuration: 1.5
+  effectDuration: 2
   damage: 13
+  hitSound: {fileID: 0}
+  volume: 1
   attachOffset: {x: 0, y: 1.5, z: 0}
 --- !u!114 &-5260521889912263930
 MonoBehaviour:
