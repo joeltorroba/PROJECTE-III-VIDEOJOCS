@@ -10,6 +10,8 @@ public class TimeFreezeSystem : MonoBehaviour
 
     public GameObject freezeEffect;
 
+    public GameObject freezeHintUI;
+
     [Header("Freeze")]
     public float freezeDuration = 5f;
 
@@ -49,6 +51,8 @@ public class TimeFreezeSystem : MonoBehaviour
             freezeUIFill.fillAmount = 1f;
             freezeUIFill.transform.parent.gameObject.SetActive(true);
         }
+
+        StartCoroutine(ShowFreezeHint());
     }
 
     public void ActivateFreeze()
@@ -99,5 +103,17 @@ public class TimeFreezeSystem : MonoBehaviour
         {
             freezeUIFill.transform.parent.gameObject.SetActive(false);
         }
+    }
+
+    IEnumerator ShowFreezeHint()
+    {
+        if (freezeHintUI == null)
+            yield break;
+
+        freezeHintUI.SetActive(true);
+
+        yield return new WaitForSeconds(3f);
+
+        freezeHintUI.SetActive(false);
     }
 }

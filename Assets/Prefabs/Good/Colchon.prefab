@@ -152,6 +152,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fallSpeed: 5
+  posicionCam: {x: 0, y: 1010, z: -14}
   cameraTransform: {fileID: 0}
 --- !u!114 &8112428864422393888
 MonoBehaviour:
@@ -168,6 +169,8 @@ MonoBehaviour:
   isBounce: 1
   fallSpeedEffect: -20
   effectDuration: 1.5
+  collectSound: {fileID: 8300000, guid: b2917621b4f9390409118ea700b046d6, type: 3}
+  volume: 1
 --- !u!1001 &2646027194762458793
 PrefabInstance:
   m_ObjectHideFlags: 0
