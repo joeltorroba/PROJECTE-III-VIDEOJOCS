@@ -18,6 +18,11 @@ public class MainMenu : MonoBehaviour
         personalizar.SetActive(true);
     }
 
+    public void OpenSettings()
+    {
+        SceneManager.LoadScene("Ajustes");
+    }
+
     public void VolverMenu()
     {
         personalizar.SetActive(false);

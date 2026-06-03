@@ -39,7 +39,7 @@ public class PauseManager : MonoBehaviour
     public void OpenSettings()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene("MainMenu");
+        SceneManager.LoadScene("Ajustes");
     }
 
     public void ExitToMenu()
