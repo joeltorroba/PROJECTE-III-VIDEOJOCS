@@ -17,23 +17,38 @@ public class GoodObject : MonoBehaviour
         {
             attached = true;
             player = other.transform;
-            // ── ANIMACIÓN ───────────────
-            PlayerAnimationController animCtrl =
-                other.GetComponent<PlayerAnimationController>();
 
+            // 1. OBTENER EL CONTROLADOR DE ANIMACIONES
+            PlayerAnimationController animCtrl = other.GetComponent<PlayerAnimationController>();
+
+            // 
             if (animCtrl != null)
             {
-                if (isBounce)
-                    animCtrl.SetPropulse();   // objeto que impulsa
-                else
-                    animCtrl.SetLand();       // objeto en el que se apoya
+                // Forzamos al Animator a limpiar cualquier trigger acumulado o estado viejo (como el Hit)
+                animCtrl.SetEndEffect(); 
             }
-            
-            // 🔥 DESTRUIR BAD SI EXISTE
+
+            // DESTRUIR BAD SI EXISTE (El Yunque)
             BadObject existingBad = other.GetComponentInChildren<BadObject>();
             if (existingBad != null)
             {
                 Destroy(existingBad.gameObject);
+            }
+
+            //  Si ya hay OTRO objeto bueno pegado  lo destruye
+            GoodObject existingGood = other.GetComponentInChildren<GoodObject>();
+            if (existingGood != null && existingGood != this)
+            {
+                Destroy(existingGood.gameObject);
+            }
+
+            // 3. AHORA SÍ, ENTRA LA NUEVA ANIMACIÓN LIMPIA
+            if (animCtrl != null)
+            {
+                if (isBounce)
+                    animCtrl.SetPropulse();   // Objeto que impulsa
+                else
+                    animCtrl.SetLand();       // Objeto en el que se apoya (ej. paracaídas)
             }
 
             FallSystem playerFall = other.GetComponent<FallSystem>();
@@ -80,11 +95,15 @@ public class GoodObject : MonoBehaviour
     IEnumerator DestroyAfterTime()
     {
         yield return new WaitForSeconds(effectDuration);
-         // Avisar al animator que el efecto terminó
-    PlayerAnimationController animCtrl = 
-        player.GetComponent<PlayerAnimationController>();
-    if (animCtrl != null)
-        animCtrl.SetEndEffect();
+        
+        if (player != null)
+        {
+            // Avisar al animator que el efecto terminó
+            PlayerAnimationController animCtrl = player.GetComponent<PlayerAnimationController>();
+            if (animCtrl != null)
+                animCtrl.SetEndEffect(); // El jugador vuelve a su estado normal de caída
+        }
+        
         Destroy(gameObject);
     }
 }
