@@ -1,5 +1,58 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &670951941538078862
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1171713437332425227}
+  - component: {fileID: 7456676050716330047}
+  m_Layer: 0
+  m_Name: SolidCollider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1171713437332425227
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 670951941538078862}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.69727826, y: -0.034673292, z: 0.010275965, w: 0.71588767}
+  m_LocalPosition: {x: 0, y: 0, z: 0.007965669}
+  m_LocalScale: {x: 0.050580923, y: 0.050580934, z: 0.05058092}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5095214893987039780}
+  m_LocalEulerAnglesHint: {x: -1.444, y: -2.024, z: 3.669}
+--- !u!65 &7456676050716330047
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 670951941538078862}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.46, y: 0.71, z: 0.32}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3713489561677752472
 GameObject:
   m_ObjectHideFlags: 0
@@ -139,7 +192,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 1
+  m_CollisionDetection: 0
 --- !u!114 &3071980095719074896
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -167,7 +220,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05ea9fa34614cb0478fe4fc58d02bc5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fallSpeedEffect: 2
+  fallSpeedEffect: 12
   effectDuration: 2
   damage: 2
   attachOffset: {x: 0, y: 1.5, z: 0}
@@ -250,7 +303,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 64c5af3ce89db4945a617580fba190aa, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1171713437332425227}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 64c5af3ce89db4945a617580fba190aa, type: 3}
 --- !u!4 &5095214893987039780 stripped

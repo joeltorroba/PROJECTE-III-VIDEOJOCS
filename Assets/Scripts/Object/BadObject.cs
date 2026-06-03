@@ -25,10 +25,17 @@ public class BadObject : MonoBehaviour
                 if (animCtrl != null)
                    animCtrl.SetHit();   // → activa Fall Flat
                 // ────────────────────────────────────────────────
-            // Si ya hay otro objeto malo pegado, eliminarlo
+                // Si ya hay otro objeto malo pegado, obligarle a terminar y eliminarlo
             BadObject existingBad = other.GetComponentInChildren<BadObject>();
             if (existingBad != null && existingBad != this)
             {
+                // ¡NUEVO! Antes de borrarlo, obligamos al jugador a limpiar el estado de animación anterior
+                animCtrl = other.GetComponent<PlayerAnimationController>();
+                if (animCtrl != null)
+                {
+                    animCtrl.SetEndEffect(); // Reseteamos el Animator del tirón
+                }
+
                 Destroy(existingBad.gameObject);
             }
 
@@ -61,13 +68,19 @@ public class BadObject : MonoBehaviour
             if (camFall != null)
                 camFall.ModifyFallSpeed(fallSpeedEffect, effectDuration);
 
-            // Parar su propia caída
-            FallSystem myFall = GetComponent<FallSystem>();
-            if (myFall != null)
-                myFall.enabled = false;
+           // Parar su propia caída por script
+        FallSystem myFall = GetComponent<FallSystem>();
+        if (myFall != null)
+            myFall.enabled = false;
 
-            // Pegarse al player
-            transform.SetParent(player);
+            
+            // Buscamos el Rigidbody del objeto sólido (el del hijo o el suyo propio)
+            Rigidbody rbSolid = GetComponentInChildren<Rigidbody>();
+            if (rbSolid != null)
+            {
+                rbSolid.isKinematic = false; // Deja que la física real de Unity tome el control
+                rbSolid.linearVelocity = Vector3.zero; // Reseteamos velocidades raras
+            }
 
             StartCoroutine(DestroyAfterTime());
         }
