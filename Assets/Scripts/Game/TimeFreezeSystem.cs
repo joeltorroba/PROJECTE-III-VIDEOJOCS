@@ -8,7 +8,7 @@ public class TimeFreezeSystem : MonoBehaviour
 
     public static bool timeFrozen = false;
 
-    public GameObject timeFreezeVolume;
+    public GameObject freezeEffect;
 
     [Header("Freeze")]
     public float freezeDuration = 5f;
@@ -68,9 +68,9 @@ public class TimeFreezeSystem : MonoBehaviour
     {
         timeFrozen = true;
 
-        if (timeFreezeVolume != null)
+        if (freezeEffect != null)
         {
-            timeFreezeVolume.SetActive(true);
+            freezeEffect.SetActive(true);
         }
 
 
@@ -90,9 +90,9 @@ public class TimeFreezeSystem : MonoBehaviour
 
         timeFrozen = false;
 
-        if (timeFreezeVolume != null)
+        if (freezeEffect != null)
         {
-            timeFreezeVolume.SetActive(false);
+            freezeEffect.SetActive(false);
         }
 
         if (freezeUIFill != null)

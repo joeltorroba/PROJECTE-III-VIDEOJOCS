@@ -12391,7 +12391,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Chapa
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6787896135731720249, guid: db591e16828a83a42bb4c4a475aca509, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -28530,6 +28531,10 @@ PrefabInstance:
     - target: {fileID: 5142370396406364576, guid: 777b205ec399cbd40afca1d7b96cf04c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 6.733
+      objectReference: {fileID: 0}
+    - target: {fileID: 5882017676225437307, guid: 777b205ec399cbd40afca1d7b96cf04c, type: 3}
+      propertyPath: fallSpeed
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6003033542554741231, guid: 777b205ec399cbd40afca1d7b96cf04c, type: 3}
       propertyPath: m_Name
@@ -45579,6 +45584,10 @@ PrefabInstance:
       propertyPath: effectDuration
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -1239294488714623714, guid: a0609b70db5183641b3ed6d6027b57f5, type: 3}
+      propertyPath: fallSpeedEffect
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 3343613810943674631, guid: a0609b70db5183641b3ed6d6027b57f5, type: 3}
       propertyPath: m_LocalScale.x
       value: 2
@@ -61129,7 +61138,7 @@ MonoBehaviour:
     hideAfterSeconds: 3
     hasTriggered: 0
   - stepName: GoodObject
-    triggerHeight: 35
+    triggerHeight: 45
     panel: {fileID: 1350233309}
     pauseGame: 0
     hideAfterSeconds: 3
@@ -73469,6 +73478,10 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 1c8a71172e6b43a45a14fab160a459f3, type: 2}
+    - target: {fileID: 7108846572814348582, guid: 6ebddd8b7b573a5438e734b62183985f, type: 3}
+      propertyPath: fallSpeed
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 7108846572814348582, guid: 6ebddd8b7b573a5438e734b62183985f, type: 3}
       propertyPath: posicionCam.y
       value: 110

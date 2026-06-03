@@ -36,17 +36,6 @@ public class FallSystem : MonoBehaviour
                 cameraTransform.position += movement;
             }
         }
-
-        if (!isBouncing)
-        {
-            Vector3 movement = Vector3.down * fallSpeed * Time.deltaTime;
-            transform.position += movement;
-
-            if (cameraTransform != null)
-            {
-                cameraTransform.position += movement;
-            }
-        }
     }
 
     public void ModifyFallSpeed(float newSpeed, float duration)
