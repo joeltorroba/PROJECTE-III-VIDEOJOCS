@@ -19,11 +19,15 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+
+        if (GameStats.Instance != null)
+        {
+            GameStats.Instance.RegistrarJugador(transform);
+        }
     }
 
     void Update()
     {
-        // Leer input del jugador
         input = Input.GetAxis("Horizontal");
     }
 
