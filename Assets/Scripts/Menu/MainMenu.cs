@@ -6,7 +6,6 @@ public class MainMenu : MonoBehaviour
     [Header("Pantallas")]
     public GameObject menuPrincipal;
     public GameObject personalizar;
-    public GameObject ajustes;
 
     public void PlayGame()
     {
@@ -19,16 +18,9 @@ public class MainMenu : MonoBehaviour
         personalizar.SetActive(true);
     }
 
-    public void OpenAjustes()
-    {
-        menuPrincipal.SetActive(false);
-        ajustes.SetActive(true);
-    }
-
     public void VolverMenu()
     {
         personalizar.SetActive(false);
-        ajustes.SetActive(false);
         menuPrincipal.SetActive(true);
     }
 
