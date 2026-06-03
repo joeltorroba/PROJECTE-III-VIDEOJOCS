@@ -29,6 +29,12 @@ public class CoinManager : MonoBehaviour
         runCoins += amount;
         totalCoins += amount;
 
+        // Estadísticas de la partida actual
+        if (GameStats.Instance != null)
+        {
+            GameStats.Instance.chapasRecogidas += amount;
+        }
+
         PlayerPrefs.SetInt("TotalCoins", totalCoins);
         PlayerPrefs.Save();
 
@@ -47,5 +53,16 @@ public class CoinManager : MonoBehaviour
     public int GetTotalCoins()
     {
         return totalCoins;
+    }
+
+    public int GetRunCoins()
+    {
+        return runCoins;
+    }
+
+    public void ResetRunCoins()
+    {
+        runCoins = 0;
+        UpdateUI();
     }
 }
