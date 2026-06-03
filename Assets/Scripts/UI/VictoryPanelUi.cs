@@ -16,10 +16,6 @@ public class VictoryPanelUI : MonoBehaviour
             return;
         }
 
-        Debug.Log("CHAPAS: " + GameStats.Instance.chapasRecogidas);
-        Debug.Log("DISTANCIA: " + Mathf.RoundToInt(GameStats.Instance.distanciaRecorrida));
-        Debug.Log("PARACAIDAS: " + GameStats.Instance.paracaidasRecogidos);
-
         if (chapasText != null)
         {
             chapasText.text = "+" + GameStats.Instance.chapasRecogidas;
@@ -27,15 +23,13 @@ public class VictoryPanelUI : MonoBehaviour
 
         if (distanciaText != null)
         {
-            distanciaText.text =
-                Mathf.RoundToInt(GameStats.Instance.distanciaRecorrida)
-                + " / 1000 m";
+            int distancia = Mathf.RoundToInt(GameStats.Instance.distanciaRecorrida);
+            distanciaText.text = distancia + " m";
         }
 
         if (paracaidasText != null)
         {
-            paracaidasText.text =
-                GameStats.Instance.paracaidasRecogidos + " / 3";
+            paracaidasText.text = GameStats.Instance.paracaidasRecogidos + " / 3";
         }
     }
 }
