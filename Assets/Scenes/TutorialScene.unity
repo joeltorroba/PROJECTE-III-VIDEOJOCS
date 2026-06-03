@@ -6761,7 +6761,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   victoryPanel: {fileID: 1060347510}
-  gameOverPanel: {fileID: 0}
+  gameOverPanel: {fileID: 1014946606}
 --- !u!4 &170693531
 Transform:
   m_ObjectHideFlags: 0
@@ -28132,7 +28132,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 1000 / 1000m
+  m_text: 1000m
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -34636,9 +34636,9 @@ RectTransform:
   - {fileID: 1686766211}
   - {fileID: 1765097744}
   - {fileID: 424714464}
+  - {fileID: 1021939614}
   - {fileID: 1860618581}
   - {fileID: 722781400}
-  - {fileID: 1021939614}
   m_Father: {fileID: 1442226306}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -35876,9 +35876,9 @@ RectTransform:
   - {fileID: 1145438485}
   - {fileID: 1917000445}
   - {fileID: 249996743}
+  - {fileID: 286264449}
   - {fileID: 2010778488}
   - {fileID: 1430229066}
-  - {fileID: 286264449}
   m_Father: {fileID: 1442226306}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -52212,7 +52212,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 1000 / 1000m
+  m_text: 1000m
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -62241,7 +62241,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 170693530}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: RestartGame
+        m_MethodName: RestartTutorial
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -69156,7 +69156,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 170693530}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: RestartGame
+        m_MethodName: RestartTutorial
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

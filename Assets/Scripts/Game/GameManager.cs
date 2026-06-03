@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
     public GameObject victoryPanel;
     public GameObject gameOverPanel;
 
-    void Awake()
+    private void Awake()
     {
         instance = this;
         Time.timeScale = 1f;
@@ -16,28 +16,35 @@ public class GameManager : MonoBehaviour
 
     public void Victory()
     {
-        victoryPanel.SetActive(true);
+        if (victoryPanel != null)
+        {
+            victoryPanel.SetActive(true);
+        }
+
         Time.timeScale = 0f;
     }
 
     public void GameOver()
     {
-        if (FindFirstObjectByType<PlayerHealth>() != null)
+        PlayerHealth playerHealth = FindFirstObjectByType<PlayerHealth>();
+
+        if (playerHealth != null)
         {
-            FindFirstObjectByType<PlayerHealth>().HideUI();
+            playerHealth.HideUI();
         }
 
-        gameOverPanel.SetActive(true);
+        if (gameOverPanel != null)
+        {
+            gameOverPanel.SetActive(true);
+        }
+
         Time.timeScale = 0f;
     }
 
-    public void RestartGame()
+    public void RestartTutorial()
     {
         Time.timeScale = 1f;
-
-        SceneManager.LoadScene(
-            SceneManager.GetActiveScene().buildIndex
-        );
+        SceneManager.LoadScene("TutorialScene");
     }
 
     public void ReturnToMainMenu()
