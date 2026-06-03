@@ -9,14 +9,14 @@ public class CoinSpawner : MonoBehaviour
     [Header("Cantidad")]
     public int totalCoins = 100;
 
-    [Header("Altura máxima")]
+    [Header("Altura maxima")]
     public float maxHeight = 300f;
 
-    [Header("Límites X")]
+    [Header("Limites X")]
     public float minX = -5f;
     public float maxX = 5f;
 
-    [Header("Separación mínima")]
+    [Header("Separacion minima")]
     public float minDistance = 2f;
 
     private List<Vector3> spawnedPositions = new List<Vector3>();

@@ -31,7 +31,7 @@ public class GoodObject : MonoBehaviour
 
             PlayerAnimationController animCtrl = other.GetComponent<PlayerAnimationController>();
 
-            // 🚨 LIMPIEZA TOTAL: Si tenías una mancuerna encima, la destruimos y la sacamos de la escena YA
+           
             BadObject existingBad = other.GetComponentInChildren<BadObject>();
             if (existingBad != null)
             {
@@ -39,7 +39,7 @@ public class GoodObject : MonoBehaviour
                 Destroy(existingBad.gameObject);       // Borrar objeto malo
             }
 
-            // Si ya tenías otro objeto bueno (ej. doble flotador), lo limpiamos también
+            // Si ya tenías otro objeto bueno lo limpiamos también
             GoodObject existingGood = other.GetComponentInChildren<GoodObject>();
             if (existingGood != null && existingGood != this)
             {
@@ -47,7 +47,7 @@ public class GoodObject : MonoBehaviour
                 Destroy(existingGood.gameObject);
             }
 
-            // ACTIVAMOS LA ANIMACIÓN (Ahora forzada por anim.Play)
+            // ACTIVAMOS LA ANIMACIÓN 
             if (animCtrl != null)
             {
                 if (isBounce)
@@ -56,7 +56,7 @@ public class GoodObject : MonoBehaviour
                     animCtrl.SetLand();       // Planeo flotador/caja
             }
 
-            // Aplicamos las nuevas velocidades del objeto bueno (sobrescribiendo las del malo)
+            // Aplicamos las nuevas velocidades del objeto bueno al jugador y a la cámara
             FallSystem playerFall = other.GetComponent<FallSystem>();
             FallSystem camFall = Camera.main.GetComponent<FallSystem>();
 

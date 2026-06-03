@@ -61,9 +61,6 @@ public class TutorialManager : MonoBehaviour
     {
         step.hasTriggered = true;
 
-        // ← AQUÍ ESTÁ LA MAGIA
-        // Cuando llegue el paso llamado "Bad Object"
-        // se activan los warnings
         if (step.stepName == "Bad Object")
         {
             canShowBadWarning = true;

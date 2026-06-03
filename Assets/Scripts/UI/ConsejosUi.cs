@@ -31,7 +31,6 @@ public class ConsejosUI : MonoBehaviour
                 indice = 0;
             }
 
-            // IMPORTANTE:
             yield return new WaitForSecondsRealtime(tiempoCambio);
         }
     }

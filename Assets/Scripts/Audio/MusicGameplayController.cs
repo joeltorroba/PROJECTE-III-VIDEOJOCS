@@ -2,22 +2,22 @@ using UnityEngine;
 
 public class MusicGameplayController : MonoBehaviour
 {
-    [Header("Música Gameplay (Dinámica)")]
+    [Header("Musica Gameplay (Dinamica)")]
     public AudioSource hornDrippingSource;
     public AudioSource analogSynthGuitarSource;
     public AudioSource bassonsVioloncelliSource;
     public AudioSource skyRunnerSource;
 
     [Header("Ajustes de Mezcla Global")]
-    [Range(0f, 1f)] public float volumenGeneralMaster = 0.22f; // Subido un pelín (de 0.15 a 0.22)
+    [Range(0f, 1f)] public float volumenGeneralMaster = 0.22f; // Subido un pelï¿½n (de 0.15 a 0.22)
 
-    [Header("Límites por Instrumento")]
+    [Header("Lï¿½mites por Instrumento")]
     [Range(0f, 1f)] public float maxHornBase = 0.8f;
     [Range(0f, 1f)] public float maxGuitar = 0.5f;
     [Range(0f, 1f)] public float maxVioloncelli = 0.9f;
     [Range(0f, 1f)] public float maxSkyRunner = 0.7f;
 
-    [Header("Multiplicador de Tensión")]
+    [Header("Multiplicador de Tensiï¿½n")]
     [Range(1f, 3f)] public float multiplicadorVioloncelliTension = 1.5f; // Fuerza un extra a los chelos malos
 
     private PlayerHealth playerHealth;
@@ -82,7 +82,7 @@ public class MusicGameplayController : MonoBehaviour
 
         if (bassonsVioloncelliSource != null)
         {
-            // Calcula el volumen dinámico y le aplica el multiplicador de tensión extra
+            // Calcula el volumen dinï¿½mico y le aplica el multiplicador de tensiï¿½n extra
             float volVioloncelli = (1f - healthPercent) * maxVioloncelli * volumenGeneralMaster * multiplicadorVioloncelliTension;
             bassonsVioloncelliSource.volume = Mathf.Clamp01(volVioloncelli);
         }

@@ -32,7 +32,7 @@ public class BadObject : MonoBehaviour
 
             PlayerAnimationController animCtrl = other.GetComponent<PlayerAnimationController>();
 
-            // 🚨 LIMPIEZA INMEDIATA DE OBJETOS ANTERIORES 🚨
+            
             
             // Si hay un objeto malo viejo pegado
             BadObject existingBad = other.GetComponentInChildren<BadObject>();
@@ -42,18 +42,18 @@ public class BadObject : MonoBehaviour
                 Destroy(existingBad.gameObject);
             }
 
-            // Si hay un objeto bueno (el flotador/caja) pegado
+            // Si hay un objeto bueno pegado
             GoodObject existingGood = other.GetComponentInChildren<GoodObject>();
             if (existingGood != null)
             {
-                existingGood.transform.SetParent(null); // ← ¡EL TRUCO! Lo independizamos para que su Update no moleste más
+                existingGood.transform.SetParent(null); // 
                 Destroy(existingGood.gameObject);
             }
 
-            // ACTIVAMOS EL HIT (El método SetHit ya limpia triggers viejos internamente y activa el Hit)
+            // ACTIVAMOS EL HIT 
             if (animCtrl != null)
             {
-               animCtrl.SetHit(); // → Forza la animación de Fall Flat en horizontal
+               animCtrl.SetHit(); // → Forza la animación de Fall Flat
             }
 
             // Quitar vida
@@ -83,7 +83,7 @@ public class BadObject : MonoBehaviour
             if (myFall != null)
                 myFall.enabled = false;
 
-            // Buscamos el Rigidbody del objeto sólido
+            // Buscamos el Rigidbody
             Rigidbody rbSolid = GetComponentInChildren<Rigidbody>();
             if (rbSolid != null)
             {
@@ -116,7 +116,7 @@ public class BadObject : MonoBehaviour
         {
             PlayerAnimationController animCtrl = player.GetComponent<PlayerAnimationController>();
             if (animCtrl != null)
-                animCtrl.SetEndEffect(); // Termina el mareo y vuelve a caer normal
+                animCtrl.SetEndEffect(); 
         }
          
         Destroy(gameObject);

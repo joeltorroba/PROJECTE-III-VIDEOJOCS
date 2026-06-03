@@ -5,7 +5,7 @@ public class AudioManager : MonoBehaviour
 {
     public static AudioManager instance;
 
-    [Header("Música del Menú")]
+    [Header("Musica del Menu")]
     public AudioSource menuMusicSource;
 
     [Header("Efectos de Sonido")]

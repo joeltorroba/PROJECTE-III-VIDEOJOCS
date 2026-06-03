@@ -13,7 +13,7 @@ public class DangerWarning : MonoBehaviour
 
     void Update()
     {
-        // Buscar player si aún no existe
+        
         if (player == null)
         {
             GameObject p = GameObject.FindGameObjectWithTag("Player");
@@ -28,7 +28,7 @@ public class DangerWarning : MonoBehaviour
             }
         }
 
-        // Seguridad
+        
         if (warningImage == null)
             return;
 
@@ -42,11 +42,11 @@ public class DangerWarning : MonoBehaviour
             if (bad == null)
                 continue;
 
-            // Ignorar objetos ya pegados
+           
             if (bad.transform.parent == player)
                 continue;
 
-            // 🔥 IGNORAR si ya pasó al player
+          
             if (bad.transform.position.y < player.position.y)
                 continue;
 
@@ -59,13 +59,13 @@ public class DangerWarning : MonoBehaviour
             }
         }
 
-        // Si hay peligro cerca
+        
         if (closestDistance < maxDistance)
         {
             float intensity =
                 1f - (closestDistance / maxDistance);
 
-            // Parpadeo suave
+            
             float alpha =
                 (Mathf.Sin(Time.time * flashSpeed) + 1f) / 2f;
 
@@ -77,7 +77,7 @@ public class DangerWarning : MonoBehaviour
         }
         else
         {
-            // Fade suave al desaparecer
+            
             Color c = warningImage.color;
 
             c.a = Mathf.Lerp(c.a, 0f, Time.deltaTime * 5f);

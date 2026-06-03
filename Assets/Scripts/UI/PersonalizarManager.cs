@@ -17,7 +17,6 @@ public class PersonalizarManager : MonoBehaviour
 
     private void Start()
     {
-        // Solo muestra la primera ficha al abrir
         Verde.SetActive(true);
         Artico.SetActive(false);
         Rojo.SetActive(false);

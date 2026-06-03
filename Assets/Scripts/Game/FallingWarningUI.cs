@@ -20,8 +20,7 @@ public class FallingWarningUI : MonoBehaviour
 
     void Update()
     {
-        // SI ESTAMOS EN EL TUTORIAL Y TODAVÍA NO HEMOS LLEGADO
-        // AL PASO DE OBJETOS MALOS, NO MOSTRAR NADA
+   
         if (!warningCreated)
         {
             if (SceneManager.GetActiveScene().name == "TutorialScene")

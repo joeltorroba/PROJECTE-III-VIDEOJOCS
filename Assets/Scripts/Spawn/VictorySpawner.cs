@@ -19,7 +19,7 @@ public class VictorySpawner : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
 
-        // elegir posición random al empezar
+        // elegir posicion random al empezar
         float randomX = Random.Range(minX, maxX);
         float randomY = Random.Range(minY, maxY);
 
