@@ -18,32 +18,31 @@ public class BadObject : MonoBehaviour
         {
             attached = true;
             player = other.transform;
-               // ── ANIMACIÓN ── añade estas líneas ──────────────
-                PlayerAnimationController animCtrl =
-                    other.GetComponent<PlayerAnimationController>();
 
-                if (animCtrl != null)
-                   animCtrl.SetHit();   // → activa Fall Flat
-                // ────────────────────────────────────────────────
-                // Si ya hay otro objeto malo pegado, obligarle a terminar y eliminarlo
+            PlayerAnimationController animCtrl = other.GetComponent<PlayerAnimationController>();
+
+            // 🚨 LIMPIEZA INMEDIATA DE OBJETOS ANTERIORES 🚨
+            
+            // Si hay un objeto malo viejo pegado
             BadObject existingBad = other.GetComponentInChildren<BadObject>();
             if (existingBad != null && existingBad != this)
             {
-                // ¡NUEVO! Antes de borrarlo, obligamos al jugador a limpiar el estado de animación anterior
-                animCtrl = other.GetComponent<PlayerAnimationController>();
-                if (animCtrl != null)
-                {
-                    animCtrl.SetEndEffect(); // Reseteamos el Animator del tirón
-                }
-
+                existingBad.transform.SetParent(null); // Lo sacamos de la jerarquía ya
                 Destroy(existingBad.gameObject);
             }
 
-            // Si hay un objeto bueno pegado, eliminarlo
+            // Si hay un objeto bueno (el flotador/caja) pegado
             GoodObject existingGood = other.GetComponentInChildren<GoodObject>();
             if (existingGood != null)
             {
+                existingGood.transform.SetParent(null); // ← ¡EL TRUCO! Lo independizamos para que su Update no moleste más
                 Destroy(existingGood.gameObject);
+            }
+
+            // ACTIVAMOS EL HIT (El método SetHit ya limpia triggers viejos internamente y activa el Hit)
+            if (animCtrl != null)
+            {
+               animCtrl.SetHit(); // → Forza la animación de Fall Flat en horizontal
             }
 
             // Quitar vida
@@ -68,18 +67,17 @@ public class BadObject : MonoBehaviour
             if (camFall != null)
                 camFall.ModifyFallSpeed(fallSpeedEffect, effectDuration);
 
-           // Parar su propia caída por script
-        FallSystem myFall = GetComponent<FallSystem>();
-        if (myFall != null)
-            myFall.enabled = false;
+            // Parar su propia caída por script
+            FallSystem myFall = GetComponent<FallSystem>();
+            if (myFall != null)
+                myFall.enabled = false;
 
-            
-            // Buscamos el Rigidbody del objeto sólido (el del hijo o el suyo propio)
+            // Buscamos el Rigidbody del objeto sólido
             Rigidbody rbSolid = GetComponentInChildren<Rigidbody>();
             if (rbSolid != null)
             {
-                rbSolid.isKinematic = false; // Deja que la física real de Unity tome el control
-                rbSolid.linearVelocity = Vector3.zero; // Reseteamos velocidades raras
+                rbSolid.isKinematic = false; 
+                rbSolid.linearVelocity = Vector3.zero; 
             }
 
             StartCoroutine(DestroyAfterTime());
@@ -102,11 +100,14 @@ public class BadObject : MonoBehaviour
     IEnumerator DestroyAfterTime()
     {
         yield return new WaitForSeconds(effectDuration);
-         // Avisar al animator que el efecto terminó
-    PlayerAnimationController animCtrl = 
-        player.GetComponent<PlayerAnimationController>();
-    if (animCtrl != null)
-        animCtrl.SetEndEffect();
+        
+        if (player != null)
+        {
+            PlayerAnimationController animCtrl = player.GetComponent<PlayerAnimationController>();
+            if (animCtrl != null)
+                animCtrl.SetEndEffect(); // Termina el mareo y vuelve a caer normal
+        }
+         
         Destroy(gameObject);
     }
 }

@@ -18,57 +18,49 @@ public class GoodObject : MonoBehaviour
             attached = true;
             player = other.transform;
 
-            // 1. OBTENER EL CONTROLADOR DE ANIMACIONES
             PlayerAnimationController animCtrl = other.GetComponent<PlayerAnimationController>();
 
-            // 
-            if (animCtrl != null)
-            {
-                // Forzamos al Animator a limpiar cualquier trigger acumulado o estado viejo (como el Hit)
-                animCtrl.SetEndEffect(); 
-            }
-
-            // DESTRUIR BAD SI EXISTE (El Yunque)
+            // 🚨 LIMPIEZA TOTAL: Si tenías una mancuerna encima, la destruimos y la sacamos de la escena YA
             BadObject existingBad = other.GetComponentInChildren<BadObject>();
             if (existingBad != null)
             {
-                Destroy(existingBad.gameObject);
+                existingBad.transform.SetParent(null); // Desemparentar primero
+                Destroy(existingBad.gameObject);       // Borrar objeto malo
             }
 
-            //  Si ya hay OTRO objeto bueno pegado  lo destruye
+            // Si ya tenías otro objeto bueno (ej. doble flotador), lo limpiamos también
             GoodObject existingGood = other.GetComponentInChildren<GoodObject>();
             if (existingGood != null && existingGood != this)
             {
+                existingGood.transform.SetParent(null);
                 Destroy(existingGood.gameObject);
             }
 
-            // 3. AHORA SÍ, ENTRA LA NUEVA ANIMACIÓN LIMPIA
+            // ACTIVAMOS LA ANIMACIÓN (Ahora forzada por anim.Play)
             if (animCtrl != null)
             {
                 if (isBounce)
-                    animCtrl.SetPropulse();   // Objeto que impulsa
+                    animCtrl.SetPropulse();   // Salto colchoneta
                 else
-                    animCtrl.SetLand();       // Objeto en el que se apoya (ej. paracaídas)
+                    animCtrl.SetLand();       // Planeo flotador/caja
             }
 
+            // Aplicamos las nuevas velocidades del objeto bueno (sobrescribiendo las del malo)
             FallSystem playerFall = other.GetComponent<FallSystem>();
             FallSystem camFall = Camera.main.GetComponent<FallSystem>();
 
-            // APLICAR EFECTO SIEMPRE
             if (playerFall != null)
                 playerFall.ModifyFallSpeed(fallSpeedEffect, effectDuration);
 
             if (camFall != null)
                 camFall.ModifyFallSpeed(fallSpeedEffect, effectDuration);
 
-            // SI ES BOUNCE → DESAPARECE
             if (isBounce)
             {
                 Destroy(gameObject);
                 return;
             }
 
-            // SI NO ES BOUNCE → SE PEGA
             FallSystem myFall = GetComponent<FallSystem>();
             if (myFall != null)
                 myFall.enabled = false;
@@ -86,7 +78,7 @@ public class GoodObject : MonoBehaviour
 
     void Update()
     {
-        if (attached && player != null && !isBounce)
+        if (attached && player != null && !isBounce && transform.parent == player)
         {
             transform.position = player.position + new Vector3(0, 0.5f, 0);
         }
@@ -98,10 +90,9 @@ public class GoodObject : MonoBehaviour
         
         if (player != null)
         {
-            // Avisar al animator que el efecto terminó
             PlayerAnimationController animCtrl = player.GetComponent<PlayerAnimationController>();
             if (animCtrl != null)
-                animCtrl.SetEndEffect(); // El jugador vuelve a su estado normal de caída
+                animCtrl.SetEndEffect(); // El efecto termina y vuelve a caer normal si no hay interrupciones
         }
         
         Destroy(gameObject);
