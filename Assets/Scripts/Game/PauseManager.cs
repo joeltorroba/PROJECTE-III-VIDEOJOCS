@@ -36,9 +36,15 @@ public class PauseManager : MonoBehaviour
         isPaused = false;
     }
 
+    public void OpenSettings()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("MainMenu");
+    }
+
     public void ExitToMenu()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene("MainMenu"); // asegúrate del nombre exacto
+        SceneManager.LoadScene("MainMenu");
     }
 }
