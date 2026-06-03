@@ -33,4 +33,13 @@ public class AudioSettingsUI : MonoBehaviour
 
         PlayerPrefs.Save();
     }
+
+    public void ResetVolumes()
+    {
+        masterSlider.value = 0.5f;
+        musicSlider.value = 0.5f;
+        sfxSlider.value = 0.5f;
+
+        ApplyVolumes();
+    }
 }

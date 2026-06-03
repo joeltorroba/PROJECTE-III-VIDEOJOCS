@@ -1283,6 +1283,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   menuPrincipal: {fileID: 1407311117}
   personalizar: {fileID: 1777451063}
+  ajustes: {fileID: 1922890076}
 --- !u!4 &414421874
 Transform:
   m_ObjectHideFlags: 0
@@ -6204,7 +6205,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 414421873}
         m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
-        m_MethodName: QuitGame
+        m_MethodName: OpenAjustes
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6873,7 +6874,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1763106556}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 553901943}
+        m_TargetAssemblyTypeName: AudioSettingsUI, Assembly-CSharp
+        m_MethodName: ResetVolumes
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1763106556
 MonoBehaviour:
   m_ObjectHideFlags: 0
