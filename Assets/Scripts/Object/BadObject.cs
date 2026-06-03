@@ -6,6 +6,8 @@ public class BadObject : MonoBehaviour
     public float fallSpeedEffect = 18f;
     public float effectDuration = 3f;
     public float damage = 20f;
+    public AudioClip hitSound;
+    public float volume = 1f;
 
     public Vector3 attachOffset = new Vector3(0f, 1.5f, 0f);
 
@@ -18,6 +20,15 @@ public class BadObject : MonoBehaviour
         {
             attached = true;
             player = other.transform;
+
+            if (hitSound != null)
+            {
+                AudioSource.PlayClipAtPoint(
+                    hitSound,
+                    transform.position,
+                    volume
+                );
+            }
 
             PlayerAnimationController animCtrl = other.GetComponent<PlayerAnimationController>();
 

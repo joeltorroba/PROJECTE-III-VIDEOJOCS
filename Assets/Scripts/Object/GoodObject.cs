@@ -7,6 +7,8 @@ public class GoodObject : MonoBehaviour
 
     public float fallSpeedEffect = 6f;
     public float effectDuration = 3f;
+    public AudioClip collectSound;
+    public float volume = 1f;
 
     private bool attached = false;
     private Transform player;
@@ -17,6 +19,15 @@ public class GoodObject : MonoBehaviour
         {
             attached = true;
             player = other.transform;
+
+            if (collectSound != null)
+            {
+                AudioSource.PlayClipAtPoint(
+                    collectSound,
+                    transform.position,
+                    volume
+                );
+            }
 
             PlayerAnimationController animCtrl = other.GetComponent<PlayerAnimationController>();
 
