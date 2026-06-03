@@ -19,7 +19,7 @@ public class HeightManager : MonoBehaviour
         if (currentHeight < 0) currentHeight = 0;
 
         // texto
-        heightText.text = "ALTURA: " + Mathf.FloorToInt(currentHeight) + " m";
+        heightText.text = Mathf.FloorToInt(currentHeight) + " m";
 
         // barra
         heightBar.value = currentHeight;
