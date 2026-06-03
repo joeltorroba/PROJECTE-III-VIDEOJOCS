@@ -2831,9 +2831,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1539111718}
-        m_TargetAssemblyTypeName: SettingsManager, Assembly-CSharp
-        m_MethodName: RestablecerAjustes
+      - m_Target: {fileID: 553901943}
+        m_TargetAssemblyTypeName: AudioSettingsUI, Assembly-CSharp
+        m_MethodName: ResetVolumes
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
