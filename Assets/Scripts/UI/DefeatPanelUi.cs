@@ -13,7 +13,7 @@ public class DefeatPanelUI : MonoBehaviour
 
         distanciaText.text =
             Mathf.RoundToInt(GameStats.Instance.distanciaRecorrida)
-            + "1000 m";
+            + "/ 1000 m";
 
         paracaidasText.text =
             GameStats.Instance.paracaidasRecogidos + " / 3";
