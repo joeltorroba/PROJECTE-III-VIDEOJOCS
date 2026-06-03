@@ -10,8 +10,8 @@ public class ParachuteManager : MonoBehaviour
     public int requiredPieces = 3;
 
     [Header("UI")]
-    public Image parachuteFillImage; // imagen circular tipo Filled
-    public GameObject parachuteUIRoot; // para mostrarla cuando coges el primero
+    public Image parachuteFillImage;
+    public GameObject parachuteUIRoot;
 
     void Awake()
     {
@@ -29,6 +29,12 @@ public class ParachuteManager : MonoBehaviour
             return;
 
         currentPieces++;
+
+        if (GameStats.Instance != null)
+        {
+            GameStats.Instance.paracaidasRecogidos++;
+            Debug.Log("Paracaídas recogidos: " + GameStats.Instance.paracaidasRecogidos);
+        }
 
         UpdateUI();
 
