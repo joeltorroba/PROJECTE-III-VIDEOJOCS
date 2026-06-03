@@ -1,12 +1,10 @@
 using UnityEngine;
 using TMPro;
-using UnityEngine.UI;
 
 public class HeightManager : MonoBehaviour
 {
     public Transform player;
     public TextMeshProUGUI heightText;
-    public Slider heightBar;
 
     public float maxHeight = 300f;
 
@@ -16,12 +14,9 @@ public class HeightManager : MonoBehaviour
 
         float currentHeight = player.position.y;
 
-        if (currentHeight < 0) currentHeight = 0;
+        if (currentHeight < 0)
+            currentHeight = 0;
 
-        // texto
         heightText.text = Mathf.FloorToInt(currentHeight) + " m";
-
-        // barra
-        heightBar.value = currentHeight;
     }
 }
