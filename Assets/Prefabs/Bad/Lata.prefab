@@ -223,6 +223,8 @@ MonoBehaviour:
   fallSpeedEffect: 12
   effectDuration: 2
   damage: 2
+  hitSound: {fileID: 8300000, guid: c551d2ad0be0a894591597929871d5b6, type: 3}
+  volume: 2
   attachOffset: {x: 0, y: 1.5, z: 0}
 --- !u!114 &615829905256850435
 MonoBehaviour:
