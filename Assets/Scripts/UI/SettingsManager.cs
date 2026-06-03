@@ -7,4 +7,12 @@ public class SettingsManager : MonoBehaviour
     {
         SceneManager.LoadScene("MainMenu");
     }
+
+    public void RestablecerAjustes()
+    {
+        PlayerPrefs.DeleteAll();
+        PlayerPrefs.Save();
+
+        Debug.Log("Ajustes restablecidos");
+    }
 }

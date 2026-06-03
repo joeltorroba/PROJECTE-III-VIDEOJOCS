@@ -36,9 +36,9 @@ public class AudioSettingsUI : MonoBehaviour
 
     public void ResetVolumes()
     {
-        masterSlider.value = 0.5f;
-        musicSlider.value = 0.5f;
-        sfxSlider.value = 0.5f;
+        masterSlider.value = 1f;
+        musicSlider.value = 0.8f;
+        sfxSlider.value = 0.8f;
 
         ApplyVolumes();
     }
